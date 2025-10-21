@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a615979d15fc65c4ca6734737d5bb7c0, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 2
+  rotationSpeed: 5
+  invertY: 0
+  verticalRotation: -8.199979
+  horizontalRotation: 1.4000208
+  minVerticalAngle: -80
+  maxVerticalAngle: 80
+  MinZoom: 20
+  MaxZoom: 60
+  ZoomSpeed: 10
+  SmoothTime: 0.1
+  ForwardKeyCode: 119
+  BackwardKeyCode: 115
+  LeftKeyCode: 97
+  RightKeyCode: 100
+  SprintKeyCode: 304
+  CrouchKeyCode: 99
+  InteractKeyCode: 101
+  EscapeKeyCode: 27
+  ZoomKeyCode: 99
