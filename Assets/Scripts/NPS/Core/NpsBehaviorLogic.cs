@@ -17,7 +17,7 @@ public class NpsBehaviorLogic : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
     }
-
+    
     public void ChangeState(INpsState newState)
     {
         _currentState?.Exit(this);
@@ -25,6 +25,7 @@ public class NpsBehaviorLogic : MonoBehaviour
         _currentState?.Enter(this);
     }
 
+    public INpsState GetCurrentState() => _currentState;
     public Animator GetAnimator() => _animator;
     public NavMeshAgent GetAgent() => _agent;
     public Rigidbody GetRigidbody() => _rigidBody;
