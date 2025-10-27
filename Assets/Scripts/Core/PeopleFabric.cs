@@ -4,25 +4,35 @@ using UnityEngine.UI;
 
 public class PeopleFabric : MonoBehaviour
 {
-    public static PeopleFabric FabricInstance;
+    public static PeopleFabric PeopleFabricInstance;
+    private INpsConfigurator _npsConfigurator;
+    private Transform _playerPos;
 
-    private void Awake()
+    public void Initialize(Transform playerPos, INpsConfigurator npsConfigurator)
     {
-        if (PeopleFabric.FabricInstance == null) FabricInstance = this;
-        else Destroy(PeopleFabric.FabricInstance.gameObject);
+        _playerPos = playerPos;
+        _npsConfigurator = npsConfigurator;
     }
 
-    public GameObject SpawnPeople(PeopleConfigurator peopleConfigurator, Transform spawnPos)
+    public GameObject SpawnPeople(Nps peopleConfigurator)
     {
-        GameObject newNps = Instantiate(peopleConfigurator.PeoplePrefab, spawnPos.position, Quaternion.identity);
+        GameObject newNps = Instantiate(peopleConfigurator.PeoplePrefab, peopleConfigurator.SpawnPoint.transform.position, Quaternion.identity);
+        if (newNps.TryGetComponent<NpsBehaviorLogic>(out NpsBehaviorLogic component)) _npsConfigurator.ConfigureNps(component, _playerPos);
         return newNps;
     }
 }
 
-
-[CreateAssetMenu(fileName = "Nps", menuName = "NpsMenu")]
-public class PeopleConfigurator : ScriptableObject
+public interface INpsConfigurator
 {
-    public GameObject PeoplePrefab;
-    public DialogueNode FirstNode;
+    void ConfigureNps(NpsBehaviorLogic npsBehaviorLogic, Transform PlayerPos);
+}
+
+public class NpsConfigurator : INpsConfigurator
+{
+    private Nps _currentNps;
+
+    public void ConfigureNps(NpsBehaviorLogic npsBehaviorLogic, Transform PlayerPos)
+    {
+        npsBehaviorLogic.Initialize(_currentNps, PlayerPos);
+    }
 }

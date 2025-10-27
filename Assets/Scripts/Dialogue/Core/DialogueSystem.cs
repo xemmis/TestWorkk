@@ -1,84 +1,76 @@
-﻿using TMPro;
+﻿using System.Collections;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class DialogueSystem : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private GameObject dialoguePopup;
-    [SerializeField] private TextMeshProUGUI npcText;
-    [SerializeField] private Transform answersContainer;
-    [SerializeField] private GameObject answerButtonPrefab;
-    [SerializeField]
-    private DialogueNode DialogueNode;
+    [SerializeField] private DialogueTree _currentTree;
+    [SerializeField] private float _dialogueSkipTick;
+    [SerializeField] private bool _canSkip;
+    private IDialogueVisualizer _dialogueVisualizer;
+    private IDialogueInputHandler _dialogueInputHandler;
     private DialogueNode _currentNode;
-    public static DialogueSystem Instance { get; private set; }
+    public UnityEvent<DialogueNode> OnNodeChanged;
+    public static DialogueSystem DialogueSystemInstance;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (DialogueSystem.DialogueSystemInstance == null) DialogueSystem.DialogueSystemInstance = this;
+        else Destroy(gameObject);
     }
 
-    private void Start()
+    public void Initialize(IDialogueVisualizer dialogueVisualizer, IDialogueInputHandler dialogueInputHandler)
     {
-        StartDialogue(DialogueNode);
-    }
-    public void StartDialogue(DialogueNode startNode)
-    {
-        _currentNode = startNode;
-        dialoguePopup.SetActive(true);
-        ShowCurrentNode();
+        _dialogueInputHandler = dialogueInputHandler;
+        _dialogueVisualizer = dialogueVisualizer;
     }
 
-    public void EndDialogue()
+    public void StartDialogue(DialogueTree dialogueTree)
     {
-        dialoguePopup.SetActive(false);
-        ClearAnswers();
-        _currentNode = null;
+        _currentTree = dialogueTree;
+        _currentNode = _currentTree?.GetCurrentNode(_currentTree.FirstNodeID);
+        _dialogueInputHandler.HandleInput(true);
+        StartCoroutine(SkipTick());
+        UIServices();
+        OnNodeChanged?.Invoke(_currentNode);
     }
 
-    private void ShowCurrentNode()
+    public void NextNode()
     {
-        if (_currentNode == null)
+        if (!_canSkip) return;
+
+        if (_currentNode.nextNodeId == "")
         {
             EndDialogue();
             return;
         }
-
-        npcText.text = _currentNode.npcText;
-
-        ClearAnswers();
-
-        foreach (var answer in _currentNode.answers)
-        {
-            var buttonObj = Instantiate(answerButtonPrefab, answersContainer);
-            var button = buttonObj.GetComponent<AnswerButton>();
-
-            if (button != null)
-            {
-                button.Setup(answer.text, () => SelectAnswer(answer));
-            }
-        }
+        _dialogueInputHandler.HandleInput(true);
+        _currentNode = _currentTree?.GetCurrentNode(_currentNode.nextNodeId);
+        OnNodeChanged?.Invoke(_currentNode);
+        StartCoroutine(SkipTick());
+        UIServices();
     }
 
-    private void SelectAnswer(DialogueAnswer answer)
+    private IEnumerator SkipTick()
     {
-        _currentNode = answer.nextNode;
-        ShowCurrentNode();
+        _canSkip = false;
+        yield return new WaitForSeconds(_dialogueSkipTick);
+
+        _canSkip = true;
     }
 
-    private void ClearAnswers()
+    private void UIServices()
     {
-        foreach (Transform child in answersContainer)
-        {
-            Destroy(child.gameObject);
-        }
+        _dialogueVisualizer.CleanUpUI();
+
+        _dialogueVisualizer.Visualize(_currentNode);
+    }
+
+    public void EndDialogue()
+    {
+        _dialogueVisualizer.CleanUpUI();
+        _dialogueInputHandler.HandleInput(false);
+
+        _currentTree = null;
+        _currentNode = null;
     }
 }

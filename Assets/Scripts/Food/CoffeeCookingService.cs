@@ -6,16 +6,19 @@ public class CoffeeCookingService : ICookingService
 {
     private readonly float _cookTime;
 
-    // ✅ Убрать timer из конструктора - он должен быть локальным
     public CoffeeCookingService(float cookTime = 5f)
     {
         _cookTime = cookTime;
     }
 
+    public bool IsCooking { get; private set; }
+
     public async Task CookAsync(IFood food, CancellationToken cancellationToken = default)
     {
-        float timer = 0f; // ✅ Timer должен быть локальной переменной!
-
+        if (IsCooking) return;
+        Debug.Log("Da");
+        float timer = 0f;
+        IsCooking = true;
         while (timer < _cookTime && !cancellationToken.IsCancellationRequested)
         {
             timer += Time.deltaTime;
@@ -25,6 +28,7 @@ public class CoffeeCookingService : ICookingService
         if (!cancellationToken.IsCancellationRequested)
         {
             food.SetReady(true);
+            IsCooking = false;
         }
     }
 }

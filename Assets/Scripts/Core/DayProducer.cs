@@ -9,19 +9,13 @@ public class DayProducer : MonoBehaviour, IDayProducer
     {
         public string description;
         public float time;
-        public PeopleConfigurator PeopleConfigurator;
-    }
-    [System.Serializable]
-    public class TestEvent
-    {
-        public string description;
-        public float time;
+        public Nps PeopleConfigurator;
     }
 
     [SerializeField] private List<ScheduledSpawnEvent> _schedule = new List<ScheduledSpawnEvent>();
     private Coroutine _dayCoroutine;
 
-    [SerializeField] private float _dayDuration = 60f; // Длительность дня в секундах
+    [SerializeField] private float _dayDuration = 60f;
     public UnityEvent OnDayStart;
     public UnityEvent OnDayEnd;
 
@@ -32,7 +26,6 @@ public class DayProducer : MonoBehaviour, IDayProducer
 
     public void StartNewDay()
     {
-        // Останавливаем предыдущий день если запущен
         if (_dayCoroutine != null)
         {
             StopCoroutine(_dayCoroutine);
@@ -46,18 +39,15 @@ public class DayProducer : MonoBehaviour, IDayProducer
         OnDayStart?.Invoke();
         Debug.Log("Day started!");
 
-        // Сортируем события по времени
         _schedule.Sort((a, b) => a.time.CompareTo(b.time));
 
         foreach (var scheduledEvent in _schedule)
         {
-            // Ждем пока не наступит время события
             yield return new WaitForSeconds(scheduledEvent.time);
-            PeopleFabric.FabricInstance.SpawnPeople(scheduledEvent.PeopleConfigurator, transform);
+            PeopleFabric.PeopleFabricInstance.SpawnPeople(scheduledEvent.PeopleConfigurator);
             Debug.Log($"Event triggered: {scheduledEvent.description} at time {scheduledEvent.time}");
         }
 
-        // Ждем окончания дня
         float elapsedTime = _schedule.Count > 0 ? _schedule[_schedule.Count - 1].time : 0f;
         float remainingTime = _dayDuration - elapsedTime;
 
@@ -70,10 +60,10 @@ public class DayProducer : MonoBehaviour, IDayProducer
         Debug.Log("Day ended!");
     }
 
-    public void AddEvent(float time, UnityAction action, PeopleConfigurator peopleConfigurator, string description = "Event")
+    public void AddEvent(float time, UnityAction action, Nps peopleConfigurator, string description = "Event")
     {
         var newEvent = new ScheduledSpawnEvent
-        {            
+        {
             PeopleConfigurator = peopleConfigurator,
             time = time,
             description = description,
@@ -81,12 +71,4 @@ public class DayProducer : MonoBehaviour, IDayProducer
 
         _schedule.Add(newEvent);
     }
-
-    // Пример использования из инспектора
-    [ContextMenu("Add Test Event")]
-    public void AddTestEvent()
-    {
-        AddEvent(5f, () => Debug.Log("Test event triggered!"),null, "Test Event");
-    }
-
 }

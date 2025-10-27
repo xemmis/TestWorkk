@@ -2,12 +2,12 @@
 
 public class WaitState : INpsState
 {
-    public WaitState(IFood requiredFood)
+    public WaitState(string requiredFood)
     {
         _requiredFood = requiredFood;
     }
 
-    private IFood _requiredFood;
+    private string _requiredFood;
     private Animator _animator;
     private NpsBehaviorLogic _behaviorLogic;
     public void Enter(NpsBehaviorLogic controller)
@@ -19,7 +19,7 @@ public class WaitState : INpsState
 
     public void AcceptFood(IFood requiredFood)
     {
-        if (requiredFood == this as IFood)
+        if (_requiredFood == requiredFood.Name && requiredFood.IsReady)
         {
             Debug.Log("Succses");
             _behaviorLogic.ChangeState(new IdleState());

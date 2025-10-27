@@ -6,17 +6,15 @@ public class WalkState : INpsState
     private Transform _positionToWalk;
     private NavMeshAgent _agent;
     private Animator _animator;
-    private bool _initialized;
 
     public WalkState(Transform positionToWalk)
     {
         _positionToWalk = positionToWalk;
-        _initialized = true;
     }
 
     public void Enter(NpsBehaviorLogic controller)
     {
-        if (!_initialized) controller.ChangeState(new IdleState());
+        controller.ChangeState(new IdleState());
         _animator = controller.GetAnimator();
         _agent = controller.GetAgent();
 
@@ -28,7 +26,12 @@ public class WalkState : INpsState
     {
         _agent.isStopped = true;
         _animator.SetBool("Walk", false);
+
+        _positionToWalk = null;
+        _agent = null;
+        _animator = null;
     }
 
     public void Update(NpsBehaviorLogic controller) { }
 }
+
