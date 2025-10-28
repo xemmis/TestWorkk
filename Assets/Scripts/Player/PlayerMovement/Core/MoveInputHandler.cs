@@ -36,7 +36,6 @@ public class MoveInputHandler : MonoBehaviour, IMoveInputHandler
     }
     public void Initialize(ISprintHandler sprintHandler, ICrouchHandler crouchHandler, IMoveHandler moveHandler)
     {
-        _initalized = true;
         _sprintHandler = sprintHandler;
         _crouchHandler = crouchHandler;
         _moveHandler = moveHandler;
@@ -65,8 +64,6 @@ public class MoveInputHandler : MonoBehaviour, IMoveInputHandler
 
     private void Update()
     {
-        if (!_initalized) return;
-
         HandleGravity();
         CrouchInput();
         MoveInput();
