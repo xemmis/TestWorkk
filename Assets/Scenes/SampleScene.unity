@@ -290,6 +290,8 @@ MonoBehaviour:
   _dialogueSystem: {fileID: 74002761}
   _coffeMachine: {fileID: 1206204277}
   _coffeeCookTime: 3
+  _interactionScannerService: {fileID: 201379993474673399}
+  _interactionRayScanner: {fileID: 201379993474673396}
 --- !u!1 &562128768
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,26 +1428,13 @@ PrefabInstance:
       addedObject: {fileID: 201379993474673396}
     - targetCorrespondingSourceObject: {fileID: 8782207090816414974, guid: 28f262a79ae575f47a570f177d9eece4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 201379993474673395}
+      addedObject: {fileID: 201379993474673399}
   m_SourcePrefab: {fileID: 100100000, guid: 28f262a79ae575f47a570f177d9eece4, type: 3}
 --- !u!1 &201379993474673394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8782207090816414974, guid: 28f262a79ae575f47a570f177d9eece4, type: 3}
   m_PrefabInstance: {fileID: 201379993474673393}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &201379993474673395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201379993474673394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6144003f6bd82904d8be5f78f5d427da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _holdPoint: {fileID: 1035482290}
 --- !u!114 &201379993474673396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1512,6 +1501,19 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 2146031143998921783, guid: 28f262a79ae575f47a570f177d9eece4, type: 3}
   m_PrefabInstance: {fileID: 201379993474673393}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &201379993474673399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201379993474673394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0355510e4fd0e134f9032592d4c349e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skanTick: 0.25
 --- !u!4 &6463736710750986218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 485738819871910118, guid: 28f262a79ae575f47a570f177d9eece4, type: 3}
