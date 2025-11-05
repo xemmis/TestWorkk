@@ -11,9 +11,10 @@ public class CameraMoveInputHandler : MonoBehaviour, ICameraMoveInputHandler
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         _zoomHandler = GetComponent<IZoomHandler>();
 
-        RotateHandler rotateHandler = new (gameObject, _inputSettingsSO);
+        RotateHandler rotateHandler = new(_camera.gameObject, gameObject, _inputSettingsSO);
         _zoomHandler.Initialize(_inputSettingsSO, _camera);
         ZoomHandler zoomHandler = _zoomHandler as ZoomHandler;
         Initialize(_inputSettingsSO, rotateHandler, zoomHandler);

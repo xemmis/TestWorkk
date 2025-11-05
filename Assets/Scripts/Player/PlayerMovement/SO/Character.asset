@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5b405fd651fda4a9999cdc03df36fc, type: 3}
   m_Name: Character
   m_EditorClassIdentifier: 
-  StandHeight: 1.7
-  CrouchHeight: 1
-  CurrentSpeed: 0
+  StandHeight: 2.5
+  CrouchHeight: 1.25
+  CurrentSpeed: 2
   WalkSpeed: 2
   SprintSpeed: 5

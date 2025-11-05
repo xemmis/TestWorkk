@@ -1,8 +1,12 @@
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
-public class PeopleFabric : MonoBehaviour
+public interface NpsFabric
+{
+    GameObject SpawnNps(Nps configurator);
+}
+
+
+public class PeopleFabric : MonoBehaviour, NpsFabric
 {
     public static PeopleFabric PeopleFabricInstance;
     private INpsConfigurator _npsConfigurator;
@@ -14,9 +18,9 @@ public class PeopleFabric : MonoBehaviour
         _npsConfigurator = npsConfigurator;
     }
 
-    public GameObject SpawnPeople(Nps peopleConfigurator)
+    public GameObject SpawnNps(Nps configurator)
     {
-        GameObject newNps = Instantiate(peopleConfigurator.PeoplePrefab, peopleConfigurator.SpawnPoint.transform.position, Quaternion.identity);
+        GameObject newNps = Instantiate(configurator.PeoplePrefab, configurator.SpawnPoint.transform.position, Quaternion.identity);
         if (newNps.TryGetComponent<NpsBehaviorLogic>(out NpsBehaviorLogic component)) _npsConfigurator.ConfigureNps(component, _playerPos);
         return newNps;
     }

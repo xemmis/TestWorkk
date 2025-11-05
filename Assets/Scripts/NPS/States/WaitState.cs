@@ -19,7 +19,7 @@ public class WaitState : INpsState
 
     public void AcceptFood(IFood requiredFood)
     {
-        if (_requiredFood == requiredFood.Name && requiredFood.IsReady)
+        if (_requiredFood == requiredFood.FoodName && requiredFood.IsReadyToServe)
         {
             Debug.Log("Succses");
             _behaviorLogic.ChangeState(new IdleState());

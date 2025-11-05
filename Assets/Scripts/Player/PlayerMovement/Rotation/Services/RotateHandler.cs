@@ -4,11 +4,13 @@ public class RotateHandler : IRotateHandler
 {
     private InputSettingsSO _inputSettingsSO;
     private GameObject _gameObject;
+    private GameObject _cameraObject;
     private float horizontalRotation;
     private float verticalRotation;
-    public RotateHandler(GameObject gameObject, InputSettingsSO inputSettingsSO)
+    public RotateHandler(GameObject CameraObject, GameObject gameObject, InputSettingsSO inputSettingsSO)
     {
         _gameObject = gameObject;
+        _cameraObject = CameraObject;
         _inputSettingsSO = inputSettingsSO;
     }
 
@@ -26,6 +28,7 @@ public class RotateHandler : IRotateHandler
         verticalRotation -= processedInput.y;
         verticalRotation = Mathf.Clamp(verticalRotation, _inputSettingsSO.minVerticalAngle, _inputSettingsSO.maxVerticalAngle);
 
-        _gameObject.transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
+        _gameObject.transform.rotation = Quaternion.Euler(0f, horizontalRotation, 0f);
+        _cameraObject.transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
     }
 }
