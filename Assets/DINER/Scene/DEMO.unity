@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.06894311, g: 0.09412486, b: 0.12822285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2783,8 +2783,12 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8909794139945460792, guid: 28f262a79ae575f47a570f177d9eece4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8909794139945460792, guid: 28f262a79ae575f47a570f177d9eece4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.233
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8909794139945460792, guid: 28f262a79ae575f47a570f177d9eece4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3312,11 +3316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a681a518607b16044afdb1e3441706fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _foodPrefabs:
-  - type: 9
-    prefab: {fileID: 5950522225459186230}
-    foodName: BurgerKetchup
-  _foodContainer: {fileID: 55353100}
 --- !u!1 &1449559001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5104,7 @@ Transform:
   m_GameObject: {fileID: 434818446544697726}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -1.282, y: 0.178, z: -11.022}
+  m_LocalPosition: {x: -1.282, y: 0.178, z: -2.19}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6384,14 +6383,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0895cd526e39fe342a2001d6309b1193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ThrowForce>k__BackingField: 5
+  <CanPickup>k__BackingField: 1
   <FoodName>k__BackingField: Burger
   <IsReadyToServe>k__BackingField: 0
-  <CanPickup>k__BackingField: 1
   <CanCombine>k__BackingField: 1
   <Food>k__BackingField:
     NextIngridient: 7
     NextStagePrefab: {fileID: 266542008893485231}
-  <ThrowForce>k__BackingField: 5
 --- !u!33 &4564109817994536368
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6412,13 +6411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5326da1159e9da4c8544b91e62aad92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _throwStrength: 0
-  _rigidBody: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <IngridientType>k__BackingField: 0
-  <FoodStage>k__BackingField: {NextStages: {fileID: 5950522225459186230}, RequiredIngridient: 4}
-  <IsReady>k__BackingField: 0
-  <Name>k__BackingField: cheeseburger
 --- !u!65 &4564109817994536370
 BoxCollider:
   m_ObjectHideFlags: 0
