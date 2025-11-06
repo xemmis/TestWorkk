@@ -13,9 +13,3 @@ public enum IngredientType
     BurgerKetchup,
     None
 }
-
-public enum FoodType
-{
-    Burger,
-    BurgerKetchup
-}

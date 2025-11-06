@@ -91,7 +91,7 @@ public class PickUpService
 
     private void PickUp()
     {
-        if (_currentPickable.CanPickUp) _currentPickable.PickUp(_holdPoint);
+        if (_currentPickable.CanPickup) _currentPickable.PickUp(_holdPoint);
     }
 
     private void Drop()

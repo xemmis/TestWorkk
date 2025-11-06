@@ -9,7 +9,7 @@ public class GameBootstrap : MonoBehaviour
 
 
     [Header("Cooking Components")]
-    [SerializeField] private float _coffeeCookTime = 3f;
+    
 
     [Header("Interaction Components")]
     [SerializeField] private InteractionScannerService _interactionScannerService;

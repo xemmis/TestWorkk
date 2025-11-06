@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.068942994, g: 0.09412428, b: 0.12822273, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1681,7 +1681,6 @@ MonoBehaviour:
   _dialogueInputHandler: {fileID: 1685709304}
   _dialogueVisualizer: {fileID: 586939325}
   _dialogueSystem: {fileID: 1685709303}
-  _coffeeCookTime: 3
   _interactionScannerService: {fileID: 1244963427}
   _interactionRayScanner: {fileID: 1244963426}
   _interactionVisual: {fileID: 1954125279}
@@ -2164,7 +2163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5395bf44ac860254e8a05194847ba13c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3504546
+      value: -1.294
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5395bf44ac860254e8a05194847ba13c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2172,7 +2171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5395bf44ac860254e8a05194847ba13c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.167681
+      value: -12.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5395bf44ac860254e8a05194847ba13c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3205,13 +3204,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1378152678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36cef7814e7a4c14db54a7ca418e7789, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cc9e143e864abc45a5a40b9bedc3624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodName: Ketchup
-  throwStrength: 5
-  ingredientType: 7
-  stageConfig: {fileID: 11400000, guid: 3aa1ff4fdd7bae84599c38c469224621, type: 2}
 --- !u!65 &1378152683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5076,10 +5071,9 @@ GameObject:
   - component: {fileID: 955635851153712068}
   - component: {fileID: 4245982038989614177}
   - component: {fileID: 2091980726210320555}
-  - component: {fileID: 4245982038989614178}
   - component: {fileID: 4245982038989614181}
   - component: {fileID: 4245982038989614180}
-  - component: {fileID: 4245982038989614179}
+  - component: {fileID: 4245982038989614182}
   m_Layer: 6
   m_Name: human_burger_1
   m_TagString: Untagged
@@ -5096,7 +5090,7 @@ Transform:
   m_GameObject: {fileID: 266542008893485231}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -1.329, y: 0.184, z: -11.014}
+  m_LocalPosition: {x: -2.87, y: 0.184, z: -9.032}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5111,7 +5105,7 @@ Transform:
   m_GameObject: {fileID: 434818446544697726}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -1.4007037, y: 0.178, z: -11.400555}
+  m_LocalPosition: {x: -1.282, y: 0.178, z: -11.022}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6330,43 +6324,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434818446544697726}
   m_Mesh: {fileID: 5413590246459493335, guid: 615bad325ca521e45a0b89658462aed4, type: 3}
---- !u!114 &4245982038989614178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434818446544697726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab3787a683fee741a8f40415ba9d859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodName: Burger
-  throwStrength: 5
-  ingredientType: 8
-  stageConfig: {fileID: 11400000, guid: 3aa1ff4fdd7bae84599c38c469224621, type: 2}
---- !u!65 &4245982038989614179
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434818446544697726}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.15, z: 0.15}
-  m_Center: {x: 0.005706683, y: 0.006392955, z: -0.000058576457}
 --- !u!65 &4245982038989614180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6415,6 +6372,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4245982038989614182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434818446544697726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0895cd526e39fe342a2001d6309b1193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FoodName>k__BackingField: Burger
+  <IsReadyToServe>k__BackingField: 0
+  <CanPickup>k__BackingField: 1
+  <CanCombine>k__BackingField: 1
+  <Food>k__BackingField:
+    NextIngridient: 7
+    NextStagePrefab: {fileID: 266542008893485231}
+  <ThrowForce>k__BackingField: 5
 --- !u!33 &4564109817994536368
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6584,7 +6561,7 @@ Transform:
   m_GameObject: {fileID: 5950522225459186230}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -1.425, y: 0.185, z: -10.589}
+  m_LocalPosition: {x: -4.68, y: 0.19, z: -9.07}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
