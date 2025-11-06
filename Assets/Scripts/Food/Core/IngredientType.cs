@@ -2,6 +2,8 @@
 public enum IngredientType
 {
     RawMeatBall,
+    RawSausage,
+    Sausage,
     MeatBall,
     Bun,
     Pickle,

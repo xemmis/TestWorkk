@@ -3,24 +3,31 @@
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Pickupable : MonoBehaviour, IPickupable
 {
+    [SerializeField] private Rigidbody _rigidbody;
     [field: SerializeField] public float ThrowForce { get; private set; }
     [field: SerializeField] public bool CanPickup { get; private set; }
 
-    private Rigidbody _rigidbody;
+    protected virtual void Awake()
+    {
+        InitializePickupable();
+    }
 
-    private void Awake()
+    protected void InitializePickupable()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
+
     public void Drop()
     {
         if (CanPickup) return;
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Pickupable"), LayerMask.NameToLayer("Player"), false);
         HandleDrop();
     }
 
     public void PickUp(Transform parent)
     {
         HandlePickUp(parent);
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Pickupable"), LayerMask.NameToLayer("Player"), true);
     }
 
     private void HandlePickUp(Transform parent)

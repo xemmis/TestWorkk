@@ -3,7 +3,12 @@ guid: 70f6020b83b513b4eb219f03320f071c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: finger_cutlet
+    second: {fileID: 2100000, guid: 0c9f0566c654ff9468992469ad4db646, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

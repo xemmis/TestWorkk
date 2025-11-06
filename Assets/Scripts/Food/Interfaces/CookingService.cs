@@ -4,26 +4,23 @@ using UnityEngine;
 public abstract class CookingService : MonoBehaviour, ICookingService
 {
     [field: SerializeField] public List<IngredientType> TypeToCook { get; private set; }
-    public bool IsCooking { get; private set; } = false;
 
-    public void Cook(IIngridient ingridient)
+    public void Cook(ICookable ingredient)
     {
-        IsCooking = true;
-        ingridient.StartCooking();
+        if (ingredient.CanBeCooked) ingredient.CookService?.StartCooking();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.TryGetComponent<IIngridient>(out var ingridient) || IsCooking) return;
+        if (!collision.gameObject.TryGetComponent<CookableIngredient>(out var ingridient)) return;
 
         if (TypeToCook.Contains(ingridient.Type)) Cook(ingridient);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (!collision.gameObject.TryGetComponent<IIngridient>(out var ingridient) || !IsCooking) return;
+        if (!collision.gameObject.TryGetComponent<CookableIngredient>(out var ingridient)) return;
 
-        ingridient.StopCooking();
-        IsCooking = false;
+        if (TypeToCook.Contains(ingridient.Type)) ingridient.CookService?.StopCooking();
     }
 }

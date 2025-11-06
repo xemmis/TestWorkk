@@ -3,6 +3,5 @@
 public interface ICookingService
 {
     List<IngredientType> TypeToCook { get; }
-    bool IsCooking { get; }
-    void Cook(IIngridient ingridient);
+    void Cook(ICookable ingredient);
 }

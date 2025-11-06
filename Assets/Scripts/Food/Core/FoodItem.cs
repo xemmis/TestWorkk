@@ -22,7 +22,7 @@ public abstract class FoodItem : Pickupable, IFood
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<Ketcup>(out var component))
+        if (collision.gameObject.TryGetComponent<BaseCookIngridient>(out var component))
         {
             Combine(Food.NextIngridient);
         }
