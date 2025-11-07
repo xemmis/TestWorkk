@@ -2,9 +2,9 @@
 public enum IngredientType
 {
     RawMeatBall,
+    MeatBall,
     RawSausage,
     Sausage,
-    MeatBall,
     Bun,
     Pickle,
     Cabbage,
@@ -13,5 +13,6 @@ public enum IngredientType
     Ketchup,
     Burger,
     BurgerKetchup,
+    Burned,
     None
 }

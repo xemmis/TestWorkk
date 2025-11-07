@@ -6,6 +6,7 @@ public interface ICookService
     bool IsCooking { get; }
     float CookTime { get; }
     UnityEvent<bool> OnCooked { get; }
+    UnityEvent OnBurned { get; }
     void StartCooking();
     void StopCooking();
 }
