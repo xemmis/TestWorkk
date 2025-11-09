@@ -8,7 +8,6 @@ public class CookableIngredient : FoodIngredient, ICookable
     [SerializeField] private Material _burnedMaterial;
     [SerializeField] private Renderer _renderer;
 
-    public ISoundService SoundService { get; private set; }
     public ICookService CookService { get; private set; }
 
     protected override void Awake()
@@ -21,6 +20,7 @@ public class CookableIngredient : FoodIngredient, ICookable
             CookService?.OnCooked.AddListener(ChangeIngredientState);
             CookService?.OnBurned.AddListener(ChangeToBurnedState);
         }
+
 
         IsReadyToCombine = false;
     }

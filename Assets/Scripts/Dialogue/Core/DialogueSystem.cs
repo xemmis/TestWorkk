@@ -9,7 +9,7 @@ public class DialogueSystem : MonoBehaviour
     private IDialogueVisualizer _dialogueVisualizer;
     private IDialogueInputHandler _dialogueInputHandler;
     private DialogueNode _currentNode;
-    public UnityEvent<DialogueNode> OnNodeChanged;
+    public UnityEvent<DialogueNode> OnNodeChanged = new UnityEvent<DialogueNode>();
     public static DialogueSystem DialogueSystemInstance;
 
     private void Awake()
@@ -43,6 +43,7 @@ public class DialogueSystem : MonoBehaviour
             EndDialogue();
             return;
         }
+
         _dialogueInputHandler.HandleInput(true);
         _currentNode = _currentTree?.GetCurrentNode(_currentNode.nextNodeId);
         OnNodeChanged?.Invoke(_currentNode);

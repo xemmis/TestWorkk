@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public interface NpsFabric
+public interface INpsFabric
 {
     GameObject SpawnNps(Nps configurator);
 }
 
-
-public class PeopleFabric : MonoBehaviour, NpsFabric
+public class PeopleFabric : MonoBehaviour, INpsFabric
 {
     public static PeopleFabric PeopleFabricInstance;
     private INpsConfigurator _npsConfigurator;
     private Transform _playerPos;
+    [SerializeField] private GameObject _posTransform;
 
     public void Initialize(Transform playerPos, INpsConfigurator npsConfigurator)
     {
@@ -20,23 +20,21 @@ public class PeopleFabric : MonoBehaviour, NpsFabric
 
     public GameObject SpawnNps(Nps configurator)
     {
-        GameObject newNps = Instantiate(configurator.PeoplePrefab, configurator.SpawnPoint.transform.position, Quaternion.identity);
-        if (newNps.TryGetComponent<NpsBehaviorLogic>(out NpsBehaviorLogic component)) _npsConfigurator.ConfigureNps(component, _playerPos);
+        GameObject newNps = Instantiate(configurator.PeoplePrefab, _posTransform.transform.position, Quaternion.identity);
+        if (newNps.TryGetComponent<NpsBehaviorLogic>(out NpsBehaviorLogic component)) _npsConfigurator.ConfigureNps(component, configurator, _playerPos);
         return newNps;
     }
 }
 
 public interface INpsConfigurator
 {
-    void ConfigureNps(NpsBehaviorLogic npsBehaviorLogic, Transform PlayerPos);
+    void ConfigureNps(NpsBehaviorLogic npsBehaviorLogic, Nps Nps, Transform PlayerPos);
 }
 
 public class NpsConfigurator : INpsConfigurator
 {
-    private Nps _currentNps;
-
-    public void ConfigureNps(NpsBehaviorLogic npsBehaviorLogic, Transform PlayerPos)
+    public void ConfigureNps(NpsBehaviorLogic npsBehaviorLogic, Nps Nps, Transform PlayerPos)
     {
-        npsBehaviorLogic.Initialize(_currentNps, PlayerPos);
+        npsBehaviorLogic.Initialize(Nps, PlayerPos);
     }
 }

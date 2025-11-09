@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5371bc9d9737bd458f608f4f3265d1a, type: 3}
   m_Name: Victor
   m_EditorClassIdentifier: 
-  PeoplePrefab: {fileID: 8760423518966434141, guid: 4e0e9c39cd7380a4f8f164f8b87c6d0a, type: 3}
+  PeoplePrefab: {fileID: 5994643269521755431, guid: 5951f0cd78c9aae418710783e67a66a5, type: 3}
   DialogueTree: {fileID: 11400000, guid: 7e8c3718ea1e9ef44afd0b9040ac2d24, type: 2}

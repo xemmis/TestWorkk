@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ExitState : INpsState
+public class ChaseState : INpsState
 {
-    public ExitState(Transform PosToExit)
+    public ChaseState(Transform target)
     {
-        _posToExit = PosToExit;
+        _targetPos = target;
     }
 
-    private Transform _posToExit;
+    private Transform _targetPos;
     private NavMeshAgent _agent;
     private Animator _animator;
 
@@ -17,33 +17,32 @@ public class ExitState : INpsState
         _agent = controller.GetAgent();
         _animator = controller.GetAnimator();
 
-        _agent.SetDestination(_posToExit.position);
-        _animator.SetBool("Walk", true);
-        Debug.Log("Exit Started");
+        _animator.SetBool("Run", true);
+        Debug.Log("ChaseState Started");
     }
 
     public void Exit(NpsBehaviorLogic controller)
     {
-        _agent.isStopped = true;
-        _animator.SetBool("Walk", false);
+        _animator.SetBool("Run", false);
+        Debug.Log("ChaseState Ended");
 
+        _targetPos = null;
         _agent = null;
         _animator = null;
-        _posToExit = null;
-        Debug.Log("Exit Completed");
     }
 
     public void Update(NpsBehaviorLogic controller)
     {
         if (_agent == null) return;
-
+        _agent.SetDestination(_targetPos.position);
 
         if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
         {
             if (!_agent.hasPath || _agent.velocity.sqrMagnitude == 0f)
             {
-                controller.ChangeState(new IdleState());
+                controller.ChangeState(new ExitState(NpsWalkPositions.NpsWalkInstance.PositionsToWalk[1]));
             }
         }
     }
+
 }

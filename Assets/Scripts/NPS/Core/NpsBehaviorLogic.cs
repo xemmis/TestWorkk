@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
@@ -8,11 +9,11 @@ using UnityEngine.Events;
 public class NpsBehaviorLogic : MonoBehaviour, INpsBehaviorLogic
 {
     [SerializeField] private Transform _playerPos;
+    [SerializeField] private Nps _npsData;
     private INpsState _currentState;
     private Rigidbody _rigidBody;
     private Animator _animator;
     private NavMeshAgent _agent;
-    [SerializeField] private Nps _npsData;
     private UnityEvent _dialogueEvent;
 
     public void Initialize(Nps nps, Transform playerPos)
@@ -27,16 +28,34 @@ public class NpsBehaviorLogic : MonoBehaviour, INpsBehaviorLogic
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
 
-        ChangeState(new WaitState("Coffee"));
+        ChangeState(new IdleState());
     }
 
     public void ChangeState(INpsState newState)
     {
-        print("меняекмяч");
-
         _currentState?.Exit(this);
         _currentState = newState;
         _currentState?.Enter(this);
+    }
+
+    private void Update()
+    {
+        _currentState?.Update(this);
+        print(_currentState.GetType());
+    }
+
+    public void HandleChaseEvent(float tick)
+    {
+        StartCoroutine(EventActivationTick(tick));
+    }
+
+    private IEnumerator EventActivationTick(float tick)
+    {
+        yield return new WaitForSeconds(tick);
+        ChaseEventHandler chaseEventHandler = new ChaseEventHandler(_agent);
+        chaseEventHandler.HandleEvent(this);
+        chaseEventHandler.Dispose();
+        DialogueSystem.DialogueSystemInstance.EndDialogue();
     }
 
     public UnityEvent GetUnityEvent() => _dialogueEvent;

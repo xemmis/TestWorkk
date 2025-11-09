@@ -1,7 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-
 public abstract class FoodItem : Pickupable, IFood
 {
     [field: SerializeField] public string FoodName { get; private set; }
@@ -9,9 +8,14 @@ public abstract class FoodItem : Pickupable, IFood
     [field: SerializeField] public bool CanCombine { get; private set; }
     [field: SerializeField] public FoodStage Food { get; private set; }
 
-    public void Combine(IngredientType ingredientType)
+    public bool Combine(IngredientType ingredientType)
     {
-        if (Food.NextIngridient == ingredientType) SpawnNextStage();
+        if (Food.NextIngridient == ingredientType)
+        {
+            SpawnNextStage();
+            return true;
+        }
+        return false;
     }
 
     private void SpawnNextStage()
@@ -22,9 +26,12 @@ public abstract class FoodItem : Pickupable, IFood
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<BaseCookIngridient>(out var component))
+        if (collision.gameObject.TryGetComponent<FoodIngredient>(out var component))
         {
-            Combine(Food.NextIngridient);
+            if (Combine(Food.NextIngridient))
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 }

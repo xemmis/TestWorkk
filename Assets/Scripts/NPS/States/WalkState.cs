@@ -14,17 +14,16 @@ public class WalkState : INpsState
 
     public void Enter(NpsBehaviorLogic controller)
     {
-        controller.ChangeState(new IdleState());
         _animator = controller.GetAnimator();
         _agent = controller.GetAgent();
 
         _animator.SetBool("Walk", true);
         _agent?.SetDestination(_positionToWalk.position);
+        Debug.Log("WalkState Started");
     }
 
     public void Exit(NpsBehaviorLogic controller)
     {
-        _agent.isStopped = true;
         _animator.SetBool("Walk", false);
 
         _positionToWalk = null;
@@ -32,6 +31,19 @@ public class WalkState : INpsState
         _animator = null;
     }
 
-    public void Update(NpsBehaviorLogic controller) { }
+    public void Update(NpsBehaviorLogic controller)
+    {
+        if (_agent == null) return;
+
+       
+        if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
+        {
+            if (_agent.velocity.sqrMagnitude == 0f) 
+            {
+                controller.ChangeState(new TalkState());
+                Debug.Log("WalkState Completed");
+            }
+        }
+    }
 }
 

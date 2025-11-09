@@ -8,8 +8,10 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] DialogueSystem _dialogueSystem;
 
 
-    [Header("Cooking Components")]
-    
+    [Header("GameCore Components")]
+    [SerializeField] private PeopleFabric _peopleFabric;
+    [SerializeField] private Transform _playerPos;
+
 
     [Header("Interaction Components")]
     [SerializeField] private InteractionScannerService _interactionScannerService;
@@ -20,5 +22,7 @@ public class GameBootstrap : MonoBehaviour
     {
         _dialogueSystem.Initialize(_dialogueVisualizer, _dialogueInputHandler);
         _interactionScannerService.Initialize(_interactionRayScanner, _interactionVisual);
+        NpsConfigurator npsConfigurator = new();
+        _peopleFabric.Initialize(_playerPos, npsConfigurator);
     }
 }

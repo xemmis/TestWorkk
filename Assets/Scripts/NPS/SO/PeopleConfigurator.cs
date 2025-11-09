@@ -5,5 +5,4 @@ public class Nps : ScriptableObject
 {
     public GameObject PeoplePrefab;
     public DialogueTree DialogueTree;
-    public GameObject SpawnPoint;
 }
