@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NpsWalkPositions : MonoBehaviour
 {
-    public List<Transform> PositionsToWalk;
+    public List<Transform> PositionsToWalk;   
 
     public static NpsWalkPositions NpsWalkInstance;
 

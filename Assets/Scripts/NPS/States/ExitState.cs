@@ -24,7 +24,6 @@ public class ExitState : INpsState
 
     public void Exit(NpsBehaviorLogic controller)
     {
-        _agent.isStopped = true;
         _animator.SetBool("Walk", false);
 
         _agent = null;

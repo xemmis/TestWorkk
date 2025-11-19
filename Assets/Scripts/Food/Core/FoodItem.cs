@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -6,31 +7,37 @@ public abstract class FoodItem : Pickupable, IFood
     [field: SerializeField] public string FoodName { get; private set; }
     [field: SerializeField] public bool IsReadyToServe { get; private set; }
     [field: SerializeField] public bool CanCombine { get; private set; }
-    [field: SerializeField] public FoodStage Food { get; private set; }
+    [field: SerializeField] public List<FoodStage> Food { get; private set; }
 
     public bool Combine(IngredientType ingredientType)
     {
-        if (Food.NextIngridient == ingredientType)
+        foreach (FoodStage foodStage in Food)
         {
-            SpawnNextStage();
-            return true;
+            if (foodStage.NextIngridient == ingredientType)
+            {
+                SpawnNextStage(foodStage.NextStagePrefab);
+                return true;
+            }
         }
         return false;
     }
 
-    private void SpawnNextStage()
+    private void SpawnNextStage(GameObject prefab)
     {
-        Instantiate(Food.NextStagePrefab, transform.position, quaternion.identity);
+        Instantiate(prefab, transform.position, quaternion.identity);
         Destroy(gameObject);
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent<FoodIngredient>(out var component))
         {
-            if (Combine(Food.NextIngridient))
+            if (!component.IsReadyToCombine || component.InteractionAmount <= 0) return;
+
+            if (Combine(component.Type))
             {
-                Destroy(collision.gameObject);
+                component.InteractionAmount -= 1;
+                if (component.InteractionAmount == 0) Destroy(component.gameObject);
             }
         }
     }

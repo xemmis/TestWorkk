@@ -2,6 +2,7 @@
 {
     IngredientType Type { get; }
     bool IsReadyToCombine { get; }
+    int InteractionAmount {get;}
 }
 
 public interface ICookable
