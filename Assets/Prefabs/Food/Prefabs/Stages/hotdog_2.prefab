@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7758335652362722579}
   - component: {fileID: 6818015818417859929}
   - component: {fileID: 4862370505538776527}
+  - component: {fileID: 8718095698207455380}
   m_Layer: 6
   m_Name: hotdog_2
   m_TagString: Untagged
@@ -132,3 +133,24 @@ MonoBehaviour:
   <IsReadyToServe>k__BackingField: 1
   <CanCombine>k__BackingField: 0
   <Food>k__BackingField: []
+--- !u!65 &8718095698207455380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6073593048407118392}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07226497, y: 0.20501907, z: 0.05864028}
+  m_Center: {x: -0.00026708655, y: -0.0005095526, z: 0.0038142572}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5372944260986323803}
   - component: {fileID: 7506854384660624653}
   - component: {fileID: 8960853928632244064}
+  - component: {fileID: 6545032864085647993}
   m_Layer: 6
   m_Name: burger_2
   m_TagString: Untagged
@@ -135,3 +136,24 @@ MonoBehaviour:
     NextStagePrefab: {fileID: 6092582340297844627, guid: 5615dcac5419044438740dfefd66ceb6, type: 3}
   - NextIngridient: 6
     NextStagePrefab: {fileID: 6092582340297844627, guid: 5615dcac5419044438740dfefd66ceb6, type: 3}
+--- !u!65 &6545032864085647993
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272835973225382735}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.12000078, y: 0.12000112, z: 0.06283714}
+  m_Center: {x: 0, y: -0.0003186166, z: 0.00020089836}

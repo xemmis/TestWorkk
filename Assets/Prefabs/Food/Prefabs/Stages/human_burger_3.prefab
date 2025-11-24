@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7869868546946765252}
   - component: {fileID: 7187999472502653247}
   - component: {fileID: 1318403079410584865}
+  - component: {fileID: -4240196829863583739}
   m_Layer: 0
   m_Name: human_burger_3
   m_TagString: Untagged
@@ -133,3 +134,24 @@ MonoBehaviour:
   <IsReadyToServe>k__BackingField: 1
   <CanCombine>k__BackingField: 0
   <Food>k__BackingField: []
+--- !u!65 &-4240196829863583739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791755442956615112}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.12310469, y: 0.1251995, z: 0.06303072}
+  m_Center: {x: 0.007060427, y: 0.0038404367, z: 0.002524467}

@@ -278,7 +278,7 @@ MonoBehaviour:
   <Camera>k__BackingField: {fileID: 2146031143998921783}
   <InteractionLayer>k__BackingField:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   <Distance>k__BackingField: 4
 --- !u!114 &3671905274727939437
 MonoBehaviour:

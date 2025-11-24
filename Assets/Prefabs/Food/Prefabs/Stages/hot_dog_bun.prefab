@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6462127123472691202}
   - component: {fileID: 8352538016651671865}
   - component: {fileID: 2793335303434653394}
+  - component: {fileID: -1336627594611035989}
   m_Layer: 0
   m_Name: hot_dog_bun
   m_TagString: Untagged
@@ -135,3 +136,24 @@ MonoBehaviour:
     NextStagePrefab: {fileID: 5545958417017126948, guid: 60571291172990447a0f512828a39ecf, type: 3}
   - NextIngridient: 3
     NextStagePrefab: {fileID: 4856883787090006837, guid: 47bd5884ede37de42988eba9a9211709, type: 3}
+--- !u!65 &-1336627594611035989
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256342027498700807}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07221688, y: 0.18035156, z: 0.047706045}
+  m_Center: {x: -0.0003916938, y: -0.000000014901159, z: 0.0017104528}

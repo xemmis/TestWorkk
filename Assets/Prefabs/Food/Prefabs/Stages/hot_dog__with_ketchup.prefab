@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8655002848362515286}
   - component: {fileID: 4884732867580921908}
   - component: {fileID: 4588787645629375573}
+  - component: {fileID: -1021467868914127317}
   m_Layer: 6
   m_Name: hot_dog__with_ketchup
   m_TagString: Untagged
@@ -135,3 +136,24 @@ MonoBehaviour:
     NextStagePrefab: {fileID: 801395297642956252, guid: f5ba283d0f88ba0418e62d208435c2db, type: 3}
   - NextIngridient: 0
     NextStagePrefab: {fileID: 2605233156131583743, guid: 040ebd0c45db0f94a94954eb7017f58a, type: 3}
+--- !u!65 &-1021467868914127317
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109118564663706996}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07224127, y: 0.19286507, z: 0.055418484}
+  m_Center: {x: -0.00026488677, y: -0.00044965738, z: 0.0020500792}

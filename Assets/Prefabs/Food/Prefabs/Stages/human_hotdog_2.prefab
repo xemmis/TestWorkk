@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8930027063639267423}
   - component: {fileID: 7191742559615774728}
   - component: {fileID: 3507749163911033901}
+  - component: {fileID: 920702572601333123}
   m_Layer: 6
   m_Name: human_hotdog_2
   m_TagString: Untagged
@@ -134,3 +135,24 @@ MonoBehaviour:
   <Food>k__BackingField:
   - NextIngridient: 10
     NextStagePrefab: {fileID: 1368954016527930020, guid: 14fdef254943b1f41bbd7cce27cf756d, type: 3}
+--- !u!65 &920702572601333123
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7474680633357199181}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.072216876, y: 0.18035156, z: 0.063722014}
+  m_Center: {x: -0.00026488677, y: 0.00017431377, z: 0.0062140403}

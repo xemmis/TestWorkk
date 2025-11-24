@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6034275110234355960}
   - component: {fileID: 3416458680321812890}
   - component: {fileID: 3284683848749948924}
+  - component: {fileID: -3907006065111689692}
   m_Layer: 6
   m_Name: burger_4
   m_TagString: Untagged
@@ -132,3 +133,24 @@ MonoBehaviour:
   <IsReadyToServe>k__BackingField: 1
   <CanCombine>k__BackingField: 0
   <Food>k__BackingField: []
+--- !u!65 &-3907006065111689692
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368843246769411763}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.12852314, y: 0.12964597, z: 0.063446425}
+  m_Center: {x: -0.0011616088, y: -0.00029172745, z: 0.002729806}

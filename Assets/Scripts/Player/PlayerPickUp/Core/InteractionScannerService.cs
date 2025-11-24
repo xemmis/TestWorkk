@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class InteractionScannerService : MonoBehaviour, IInteractionScannerService
 {
-    [SerializeField] private IInteractionRayScanner _interactionRayScanner;
-    [SerializeField] private IInteractionVisualFeedBack _interactionVisual;
-    [SerializeField] private IPickupable _findedPickable;
-    [SerializeField] private IInteractable _findedInteractable;
-    [SerializeField] private PickUpService _pickUpService;
-    [SerializeField] private Transform _holdPoint;
+    [SerializeField] private IInteractionRayScanner _interactionRayScanner = null;
+    [SerializeField] private IInteractionVisualFeedBack _interactionVisual = null;
+    [SerializeField] private IPickupable _findedPickable = null;
+    [SerializeField] private IInteractable _findedInteractable = null;
+    [SerializeField] private PickUpService _pickUpService = null;
+    [SerializeField] private InteractionService _interactService = null;
+    [SerializeField] private Transform _holdPoint = null;
     [SerializeField] private float _skanTick;
 
     private void Awake()
@@ -16,6 +17,7 @@ public class InteractionScannerService : MonoBehaviour, IInteractionScannerServi
         if (_interactionRayScanner != null) StartCoroutine(SkanTick());
 
         _pickUpService = new PickUpService(_holdPoint);
+        _interactService = new();
     }
 
     public void Initialize(IInteractionRayScanner interactionRayScanner, IInteractionVisualFeedBack interactionVisual)
@@ -62,6 +64,24 @@ public class InteractionScannerService : MonoBehaviour, IInteractionScannerServi
         {
             _pickUpService.PickUpInput(_findedPickable);
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            _interactService.TryInteract(_findedInteractable);
+        }
+    }
+}
+
+public class InteractionService
+{
+    public bool TryInteract(IInteractable interactable)
+    {
+        if (interactable == null || !interactable.CanInteract)
+        {
+            return false;
+        }
+
+        interactable.Interact();
+        return true;
     }
 }
 

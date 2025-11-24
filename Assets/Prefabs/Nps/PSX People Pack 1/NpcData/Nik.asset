@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5371bc9d9737bd458f608f4f3265d1a, type: 3}
+  m_Name: Nik
+  m_EditorClassIdentifier: 
+  PeoplePrefab: {fileID: 6956933318506486534, guid: ef88a652ce8983649a220022b6eb2107, type: 3}
+  DialogueTree: {fileID: 0}
