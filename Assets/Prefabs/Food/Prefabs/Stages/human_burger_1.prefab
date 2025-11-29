@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7213885243487183706}
   - component: {fileID: 2336714351056094331}
   - component: {fileID: 490375668768641984}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: human_burger_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   <IsReadyToServe>k__BackingField: 1
   <CanCombine>k__BackingField: 1
   <Food>k__BackingField:
-  - NextIngridient: 9
+  - NextIngridient: 10
     NextStagePrefab: {fileID: 4940867031701619797, guid: f41cc380acae68549b58f767e52bcda9, type: 3}
 --- !u!65 &490375668768641984
 BoxCollider:

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 240891912374336661}
   - component: {fileID: 1643074059744215751}
   - component: {fileID: 6580831575096881688}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cucumber_slice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
   <ThrowForce>k__BackingField: 5
-  <CanPickup>k__BackingField: 0
+  <CanPickup>k__BackingField: 1
   <Type>k__BackingField: 8
+  <IsReadyToCombine>k__BackingField: 1
   <InteractionAmount>k__BackingField: 1

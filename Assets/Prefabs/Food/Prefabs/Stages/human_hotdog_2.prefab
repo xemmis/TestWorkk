@@ -133,7 +133,7 @@ MonoBehaviour:
   <IsReadyToServe>k__BackingField: 1
   <CanCombine>k__BackingField: 1
   <Food>k__BackingField:
-  - NextIngridient: 10
+  - NextIngridient: 11
     NextStagePrefab: {fileID: 1368954016527930020, guid: 14fdef254943b1f41bbd7cce27cf756d, type: 3}
 --- !u!65 &920702572601333123
 BoxCollider:

@@ -9,14 +9,14 @@ using UnityEngine.Events;
 public class NpsBehaviorLogic : MonoBehaviour, INpsBehaviorLogic
 {
     [SerializeField] private Transform _playerPos;
-    [SerializeField] private Nps _npsData;
+    [SerializeField] private Npc _npsData;
     private INpsState _currentState;
     private Rigidbody _rigidBody;
     private Animator _animator;
     private NavMeshAgent _agent;
     private UnityEvent _dialogueEvent;
 
-    public void Initialize(Nps nps, Transform playerPos)
+    public void Initialize(Npc nps, Transform playerPos)
     {
         _playerPos = playerPos;
         _npsData = nps;
@@ -52,9 +52,7 @@ public class NpsBehaviorLogic : MonoBehaviour, INpsBehaviorLogic
     private IEnumerator EventActivationTick(float tick)
     {
         yield return new WaitForSeconds(tick);
-        ChaseEventHandler chaseEventHandler = new ChaseEventHandler(_agent);
-        chaseEventHandler.HandleEvent(this);
-        chaseEventHandler.Dispose();
+        ChangeState(new ChaseState(_playerPos));
         DialogueSystem.DialogueSystemInstance.EndDialogue();
     }
 
@@ -64,6 +62,6 @@ public class NpsBehaviorLogic : MonoBehaviour, INpsBehaviorLogic
     public Animator GetAnimator() => _animator;
     public NavMeshAgent GetAgent() => _agent;
     public Rigidbody GetRigidbody() => _rigidBody;
-    public Nps GetNpsData() => _npsData;
+    public Npc GetNpsData() => _npsData;
     public Transform GetPlayerPos() => _playerPos;
 }

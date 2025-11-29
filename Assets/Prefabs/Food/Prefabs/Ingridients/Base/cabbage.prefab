@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3132605776941074459}
   - component: {fileID: 6593457259292555910}
   - component: {fileID: 8412878030882811245}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cabbage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
   <ThrowForce>k__BackingField: 5
-  <CanPickup>k__BackingField: 0
-  <Type>k__BackingField: 8
+  <CanPickup>k__BackingField: 1
+  <Type>k__BackingField: 9
+  <IsReadyToCombine>k__BackingField: 1
   <InteractionAmount>k__BackingField: 1

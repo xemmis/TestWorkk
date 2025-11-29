@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3627921599889947695}
   - component: {fileID: 5737627148159883132}
   - component: {fileID: 478460509928102131}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ketchup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
   <ThrowForce>k__BackingField: 5
-  <CanPickup>k__BackingField: 0
-  <Type>k__BackingField: 11
+  <CanPickup>k__BackingField: 1
+  <Type>k__BackingField: 12
+  <IsReadyToCombine>k__BackingField: 1
   <InteractionAmount>k__BackingField: 7

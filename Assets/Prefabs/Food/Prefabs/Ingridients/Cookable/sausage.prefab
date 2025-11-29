@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 7082072968558874645}
   - component: {fileID: 3077373231151017267}
   - component: {fileID: 755924478713718188}
-  m_Layer: 0
+  - component: {fileID: 6115242252585046074}
+  - component: {fileID: 2175237180983716531}
+  m_Layer: 6
   m_Name: sausage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a8f4df6bde43f334eb6640f71c3371a4, type: 2}
+  - {fileID: 2100000, guid: efd734666dd19614f940a1317d9b89b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,12 +149,124 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
-  <ThrowForce>k__BackingField: 0
-  <CanPickup>k__BackingField: 0
-  <Type>k__BackingField: 0
+  <ThrowForce>k__BackingField: 5
+  <CanPickup>k__BackingField: 1
+  <Type>k__BackingField: 2
+  <IsReadyToCombine>k__BackingField: 0
   <InteractionAmount>k__BackingField: 1
-  <CanBeCooked>k__BackingField: 0
-  <CookedType>k__BackingField: 0
-  _cookedMaterial: {fileID: 0}
-  _burnedMaterial: {fileID: 0}
-  _renderer: {fileID: 0}
+  <CanBeCooked>k__BackingField: 1
+  <CookedType>k__BackingField: 3
+  _cookedMaterial: {fileID: 2100000, guid: a8f4df6bde43f334eb6640f71c3371a4, type: 2}
+  _burnedMaterial: {fileID: 2100000, guid: 5c14d28280ae4a941930fc45d155bed7, type: 2}
+  _renderer: {fileID: 99326933921056787}
+--- !u!82 &6115242252585046074
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917410526569077342}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2175237180983716531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917410526569077342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce789ea808b880b4bb30b48156675a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsCooked>k__BackingField: 0
+  <CookTime>k__BackingField: 12
+  <IsCooking>k__BackingField: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5587567913768243923}
   - component: {fileID: 5353173838203359814}
   - component: {fileID: 4801795429951288653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cheese
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
   <ThrowForce>k__BackingField: 5
-  <CanPickup>k__BackingField: 0
-  <Type>k__BackingField: 9
+  <CanPickup>k__BackingField: 1
+  <Type>k__BackingField: 10
+  <IsReadyToCombine>k__BackingField: 1
   <InteractionAmount>k__BackingField: 1

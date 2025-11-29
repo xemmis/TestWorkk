@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8352538016651671865}
   - component: {fileID: 2793335303434653394}
   - component: {fileID: -1336627594611035989}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: hot_dog_bun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

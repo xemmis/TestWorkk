@@ -135,8 +135,6 @@ MonoBehaviour:
   <Food>k__BackingField:
   - NextIngridient: 7
     NextStagePrefab: {fileID: 5194620978164870388, guid: 2f80fff4ce505ee4aaf1b3e4286440c0, type: 3}
-  - NextIngridient: 0
-    NextStagePrefab: {fileID: 0}
 --- !u!65 &8129308065404050647
 BoxCollider:
   m_ObjectHideFlags: 0

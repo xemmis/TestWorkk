@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7562878615821768888}
   - component: {fileID: 8146037267747221793}
   - component: {fileID: 784535931239465785}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ketchup_packing
   m_TagString: Untagged
   m_Icon: {fileID: 0}

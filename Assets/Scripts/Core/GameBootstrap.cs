@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameBootstrap : MonoBehaviour
@@ -18,11 +19,23 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private InteractionRayScanner _interactionRayScanner;
     [SerializeField] private InteractionVisualFeedBack _interactionVisual;
 
+    [Header("DayProducer Components")]
+    [SerializeField] private DayProducer _dayProducer;
+    [SerializeField] private List<SpawnEventHandler> _daySpawnHandler;
+
     private void Awake()
     {
         _dialogueSystem.Initialize(_dialogueVisualizer, _dialogueInputHandler);
         _interactionScannerService.Initialize(_interactionRayScanner, _interactionVisual);
         NpsConfigurator npsConfigurator = new();
         _peopleFabric.Initialize(_playerPos, npsConfigurator);
+    }
+
+    public void SetDayEvents(List<EventData> eventDatas)
+    {
+        if (_dayProducer != null)
+        {
+            _dayProducer.DayEvents = eventDatas;
+        }
     }
 }

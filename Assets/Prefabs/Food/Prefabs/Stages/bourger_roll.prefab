@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8796203135667511913}
   - component: {fileID: 3394473579226318740}
   - component: {fileID: -8255388783385608009}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bourger_roll
   m_TagString: Untagged
   m_Icon: {fileID: 0}

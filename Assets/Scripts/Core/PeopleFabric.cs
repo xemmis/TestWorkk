@@ -1,40 +1,51 @@
 using UnityEngine;
 
-public interface INpsFabric
+public interface INpcFabric
 {
-    GameObject SpawnNps(Nps configurator);
+    GameObject SpawnNpc(Npc configurator, Vector3 pos);
 }
 
-public class PeopleFabric : MonoBehaviour, INpsFabric
+public class PeopleFabric : MonoBehaviour, INpcFabric
 {
-    public static PeopleFabric PeopleFabricInstance;
-    private INpsConfigurator _npsConfigurator;
-    private Transform _playerPos;
-    [SerializeField] private GameObject _posTransform;
+    public static PeopleFabric PeopleFabricInstance = null;
+    private INpcConfigurator _npsConfigurator = null;
+    private Transform _playerPos = null;    
 
-    public void Initialize(Transform playerPos, INpsConfigurator npsConfigurator)
+    private void Awake()
+    {
+        if (PeopleFabric.PeopleFabricInstance == null)
+        {
+            PeopleFabric.PeopleFabricInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Initialize(Transform playerPos, INpcConfigurator npsConfigurator)
     {
         _playerPos = playerPos;
         _npsConfigurator = npsConfigurator;
     }
 
-    public GameObject SpawnNps(Nps configurator)
+    public GameObject SpawnNpc(Npc npc, Vector3 pos)
     {
-        GameObject newNps = Instantiate(configurator.PeoplePrefab, _posTransform.transform.position, Quaternion.identity);
-        if (newNps.TryGetComponent<NpsBehaviorLogic>(out NpsBehaviorLogic component)) _npsConfigurator.ConfigureNps(component, configurator, _playerPos);
-        return newNps;
+        GameObject newNpc = Instantiate(npc.PeoplePrefab, pos, Quaternion.identity);
+        if (newNpc.TryGetComponent<NpsBehaviorLogic>(out NpsBehaviorLogic component)) _npsConfigurator.ConfigureNpc(component, npc, _playerPos);
+        return newNpc;
     }
 }
 
-public interface INpsConfigurator
+public interface INpcConfigurator
 {
-    void ConfigureNps(NpsBehaviorLogic npsBehaviorLogic, Nps Nps, Transform PlayerPos);
+    void ConfigureNpc(NpsBehaviorLogic npsBehaviorLogic, Npc Npc, Transform PlayerPos);
 }
 
-public class NpsConfigurator : INpsConfigurator
+public class NpsConfigurator : INpcConfigurator
 {
-    public void ConfigureNps(NpsBehaviorLogic npsBehaviorLogic, Nps Nps, Transform PlayerPos)
+    public void ConfigureNpc(NpsBehaviorLogic npsBehaviorLogic, Npc Npc, Transform PlayerPos)
     {
-        npsBehaviorLogic.Initialize(Nps, PlayerPos);
+        npsBehaviorLogic.Initialize(Npc, PlayerPos);
     }
 }

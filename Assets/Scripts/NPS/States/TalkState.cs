@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TalkState : INpsState
 {
-    [SerializeField] private Nps _npsData;
+    [SerializeField] private Npc _npsData;
     [SerializeField] private DialogueTree _dialogueTree;
     [SerializeField] private DialogueSystem _dialogueSystem;
     [SerializeField] private NpsBehaviorLogic _controller;

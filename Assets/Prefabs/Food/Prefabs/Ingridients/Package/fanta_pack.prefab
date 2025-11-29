@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4828895929505541654}
   - component: {fileID: 8236422790744351664}
   - component: {fileID: 1772295660750625240}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fanta_pack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

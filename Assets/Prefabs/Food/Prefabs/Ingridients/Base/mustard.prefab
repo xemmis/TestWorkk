@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2470103187595325148}
   - component: {fileID: 2611712391237799522}
   - component: {fileID: 675624395667605552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mustard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
   <ThrowForce>k__BackingField: 5
-  <CanPickup>k__BackingField: 0
-  <Type>k__BackingField: 10
+  <CanPickup>k__BackingField: 1
+  <Type>k__BackingField: 11
+  <IsReadyToCombine>k__BackingField: 1
   <InteractionAmount>k__BackingField: 7
