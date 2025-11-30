@@ -10,15 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9424e8597bb1685449656987d6fd1f4f, type: 3}
-  m_Name: CaffeDay1
+  m_Name: Day1Caffe
   m_EditorClassIdentifier: 
   eventDatas:
-  - EventType: 0
+  - EventType: 1
     Parameters:
-      stringParam: 
+      stringParam: CookingAudio
       intParam: 0
       floatParam: 0
-      objectParam: {fileID: 6467421442725993289, guid: c2c4d3e56c0fd564580d27be34f23de9, type: 3}
-      vectorParam: {x: 0, y: 0, z: 0}
+      objectParam: {fileID: 0}
+      vectorParam: {x: 3, y: 0.5, z: 9}
       customData: {fileID: 0}
     TriggerTime: 5
+  - EventType: 1
+    Parameters:
+      stringParam: CookingAudio
+      intParam: 0
+      floatParam: 0
+      objectParam: {fileID: 0}
+      vectorParam: {x: -2, y: 0.5, z: -3}
+      customData: {fileID: 0}
+    TriggerTime: 10

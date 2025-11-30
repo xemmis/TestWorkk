@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Anabel
   m_EditorClassIdentifier: 
   PeoplePrefab: {fileID: 2697225348744275721, guid: 8a46aa400efbc9949942273c127b5437, type: 3}
-  DialogueTree: {fileID: 0}
+  DialogueTree: {fileID: 11400000, guid: 7e8c3718ea1e9ef44afd0b9040ac2d24, type: 2}

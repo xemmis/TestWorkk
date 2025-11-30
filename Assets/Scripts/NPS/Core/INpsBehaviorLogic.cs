@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface INpsBehaviorLogic
+public interface INpcBehaviorLogic
 {
-    void ChangeState(INpsState newState);
+    void ChangeState(INpcState newState);
 }

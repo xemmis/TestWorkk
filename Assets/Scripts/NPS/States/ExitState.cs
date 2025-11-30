@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ExitState : INpsState
+public class ExitState : INpcState
 {
     public ExitState(Transform PosToExit)
     {
@@ -12,27 +12,25 @@ public class ExitState : INpsState
     private NavMeshAgent _agent;
     private Animator _animator;
 
-    public void Enter(NpsBehaviorLogic controller)
+    public void Enter(NpcBehaviorLogic controller)
     {
         _agent = controller.GetAgent();
         _animator = controller.GetAnimator();
 
         _agent.SetDestination(_posToExit.position);
         _animator.SetBool("Walk", true);
-        Debug.Log("Exit Started");
     }
 
-    public void Exit(NpsBehaviorLogic controller)
+    public void Exit(NpcBehaviorLogic controller)
     {
         _animator.SetBool("Walk", false);
 
         _agent = null;
         _animator = null;
         _posToExit = null;
-        Debug.Log("Exit Completed");
     }
 
-    public void Update(NpsBehaviorLogic controller)
+    public void Update(NpcBehaviorLogic controller)
     {
         if (_agent == null) return;
 

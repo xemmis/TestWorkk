@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4886be6f8e076c43932609b64e11b9d, type: 3}
-  m_Name: GameAudio
+  m_Script: {fileID: 11500000, guid: 8ca61eec60f8b184e88ae28d6eb83957, type: 3}
+  m_Name: PosToTalk
   m_EditorClassIdentifier: 
-  Sounds:
-  - SoundName: CookingAudio
-    AudioClip: {fileID: 8300000, guid: 138ba88f5a1be1d4e9b3ed5c3c224236, type: 3}
-    Volume: 1
-    SpatialBlend: 1
-    Pitch: 1
-    Loop: 0
+  PathName: TalkPos
+  Position: {x: 7.4111443, y: 1.4135616, z: -0.14605331}
+  PathColor: {r: 0, g: 1, b: 1, a: 1}
+  PointSize: 0.3

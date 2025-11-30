@@ -1,22 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class TalkState : INpsState
+public class TalkState : INpcState
 {
     [SerializeField] private Npc _npsData;
     [SerializeField] private DialogueTree _dialogueTree;
     [SerializeField] private DialogueSystem _dialogueSystem;
-    [SerializeField] private NpsBehaviorLogic _controller;
+    [SerializeField] private NpcBehaviorLogic _controller;
 
-    public void Enter(NpsBehaviorLogic controller)
+    public void Enter(NpcBehaviorLogic controller)
     {
-        _npsData = controller.GetNpsData();
+        _npsData = controller.GetNpcData();
         _dialogueTree = _npsData.DialogueTree;
         _dialogueSystem = DialogueSystem.DialogueSystemInstance;
         _dialogueSystem.OnNodeChanged.AddListener(EventHandler);
         _controller = controller;
         _dialogueSystem.StartDialogue(_dialogueTree);
-        Debug.Log("TalkState Started");
     }
 
     private void EventHandler(DialogueNode dialogueNode)
@@ -30,19 +29,18 @@ public class TalkState : INpsState
                 _dialogueSystem.OnNodeChanged.RemoveListener(EventHandler);
                 break;
             case EventTheme.Leave:
-                _controller.ChangeState(new ExitState(NpsWalkPositions.NpsWalkInstance.PositionsToWalk[1]));
+                //_controller.ChangeState(new ExitState(NpsWalkPositions.NpsWalkInstance.PositionsToWalk[1]));
                 break;
         }
     }
 
-    public void Exit(NpsBehaviorLogic controller)
+    public void Exit(NpcBehaviorLogic controller)
     {
-        Debug.Log("TalkState Completed");
         _npsData = null;
         _dialogueTree = null;
         _dialogueSystem = null;
         _controller = null;
     }
 
-    public void Update(NpsBehaviorLogic controller) { }
+    public void Update(NpcBehaviorLogic controller) { }
 }

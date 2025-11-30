@@ -21,21 +21,23 @@ public class GameBootstrap : MonoBehaviour
 
     [Header("DayProducer Components")]
     [SerializeField] private DayProducer _dayProducer;
-    [SerializeField] private List<SpawnEventHandler> _daySpawnHandler;
+    [SerializeField] private List<SceneEvents> _daySpawnHandler;
+    [SerializeField] private int _currentDay;
 
     private void Awake()
     {
         _dialogueSystem.Initialize(_dialogueVisualizer, _dialogueInputHandler);
         _interactionScannerService.Initialize(_interactionRayScanner, _interactionVisual);
-        NpsConfigurator npsConfigurator = new();
+        NpcConfigurator npsConfigurator = new();
         _peopleFabric.Initialize(_playerPos, npsConfigurator);
+        SetDayEvents();
     }
 
-    public void SetDayEvents(List<EventData> eventDatas)
+    private void SetDayEvents()
     {
         if (_dayProducer != null)
         {
-            _dayProducer.DayEvents = eventDatas;
+            _dayProducer.DayEvents = _daySpawnHandler[_currentDay - 1].eventDatas;
         }
     }
 }

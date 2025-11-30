@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class WaitState : INpsState
+public class WaitState : INpcState
 {
     public WaitState(string requiredFood)
     {
@@ -9,8 +9,8 @@ public class WaitState : INpsState
 
     private string _requiredFood;
     private Animator _animator;
-    private NpsBehaviorLogic _behaviorLogic;
-    public void Enter(NpsBehaviorLogic controller)
+    private NpcBehaviorLogic _behaviorLogic;
+    public void Enter(NpcBehaviorLogic controller)
     {
         _behaviorLogic = controller;
         _animator = controller.GetAnimator();
@@ -21,12 +21,11 @@ public class WaitState : INpsState
     {
         if (_requiredFood == requiredFood.FoodName && requiredFood.IsReadyToServe)
         {
-            Debug.Log("Succses");
-            _behaviorLogic.ChangeState(new IdleState());
+            //реализация получения
         }
 
     }
-    public void Exit(NpsBehaviorLogic controller) { }
+    public void Exit(NpcBehaviorLogic controller) { }
 
-    public void Update(NpsBehaviorLogic controller) { }
+    public void Update(NpcBehaviorLogic controller) { }
 }

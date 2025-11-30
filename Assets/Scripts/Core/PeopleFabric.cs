@@ -7,9 +7,9 @@ public interface INpcFabric
 
 public class PeopleFabric : MonoBehaviour, INpcFabric
 {
+    [SerializeField] private Transform _playerPos = null;
     public static PeopleFabric PeopleFabricInstance = null;
-    private INpcConfigurator _npsConfigurator = null;
-    private Transform _playerPos = null;    
+    private INpcConfigurator _npcConfigurator = null;
 
     private void Awake()
     {
@@ -26,25 +26,26 @@ public class PeopleFabric : MonoBehaviour, INpcFabric
     public void Initialize(Transform playerPos, INpcConfigurator npsConfigurator)
     {
         _playerPos = playerPos;
-        _npsConfigurator = npsConfigurator;
+        _npcConfigurator = npsConfigurator;
     }
 
     public GameObject SpawnNpc(Npc npc, Vector3 pos)
     {
         GameObject newNpc = Instantiate(npc.PeoplePrefab, pos, Quaternion.identity);
-        if (newNpc.TryGetComponent<NpsBehaviorLogic>(out NpsBehaviorLogic component)) _npsConfigurator.ConfigureNpc(component, npc, _playerPos);
+
+        if (newNpc.TryGetComponent<NpcBehaviorLogic>(out NpcBehaviorLogic component)) _npcConfigurator.ConfigureNpc(component, npc, _playerPos);
         return newNpc;
     }
 }
 
 public interface INpcConfigurator
 {
-    void ConfigureNpc(NpsBehaviorLogic npsBehaviorLogic, Npc Npc, Transform PlayerPos);
+    void ConfigureNpc(NpcBehaviorLogic npsBehaviorLogic, Npc Npc, Transform PlayerPos);
 }
 
-public class NpsConfigurator : INpcConfigurator
+public class NpcConfigurator : INpcConfigurator
 {
-    public void ConfigureNpc(NpsBehaviorLogic npsBehaviorLogic, Npc Npc, Transform PlayerPos)
+    public void ConfigureNpc(NpcBehaviorLogic npsBehaviorLogic, Npc Npc, Transform PlayerPos)
     {
         npsBehaviorLogic.Initialize(Npc, PlayerPos);
     }

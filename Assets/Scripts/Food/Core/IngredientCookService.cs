@@ -8,6 +8,7 @@ public class IngredientCookService : MonoBehaviour, ICookService
     [field: SerializeField] public bool IsCooked { get; private set; }
     [field: SerializeField] public float CookTime { get; private set; }
     [field: SerializeField] public bool IsCooking { get; private set; } = false;
+    [field: SerializeField] public string SoundName = null;
     public UnityEvent<bool> OnCooked { get; private set; } = new UnityEvent<bool>();
     public UnityEvent OnBurned { get; private set; } = new UnityEvent();
     public ISoundService Sound { get; private set; }
@@ -43,7 +44,7 @@ public class IngredientCookService : MonoBehaviour, ICookService
 
     private IEnumerator CookingCoroutine()
     {
-        Sound.PlaySound(_audioSource, "CookingAudio");
+        Sound.PlaySound(SoundName, _audioSource);
         IsCooking = true;
         yield return new WaitForSeconds(CookTime);
         IsCooked = true;
@@ -54,7 +55,7 @@ public class IngredientCookService : MonoBehaviour, ICookService
     }
 
     public void StopCooking()
-    {        
+    {
         Sound.StopSound(_audioSource);
         IsCooking = false;
         StopCoroutine(CookRoutine);

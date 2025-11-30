@@ -1,47 +1,43 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class WalkState : INpsState
+public class WalkState : INpcState
 {
-    private Transform _positionToWalk;
+    private Vector3 _positionToWalk;
     private NavMeshAgent _agent;
     private Animator _animator;
 
-    public WalkState(Transform positionToWalk)
+    public WalkState(Vector3 positionToWalk)
     {
         _positionToWalk = positionToWalk;
     }
 
-    public void Enter(NpsBehaviorLogic controller)
+    public void Enter(NpcBehaviorLogic controller)
     {
         _animator = controller.GetAnimator();
         _agent = controller.GetAgent();
 
         _animator.SetBool("Walk", true);
-        _agent?.SetDestination(_positionToWalk.position);
-        Debug.Log("WalkState Started");
+        _agent?.SetDestination(_positionToWalk);
     }
 
-    public void Exit(NpsBehaviorLogic controller)
+    public void Exit(NpcBehaviorLogic controller)
     {
-        _animator.SetBool("Walk", false);
-
-        _positionToWalk = null;
+        _positionToWalk = Vector3.zero;
         _agent = null;
         _animator = null;
     }
 
-    public void Update(NpsBehaviorLogic controller)
+    public void Update(NpcBehaviorLogic controller)
     {
         if (_agent == null) return;
 
-       
+
         if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
         {
-            if (_agent.velocity.sqrMagnitude == 0f) 
+            if (_agent.velocity.sqrMagnitude == 0f)
             {
-                controller.ChangeState(new TalkState());
-                Debug.Log("WalkState Completed");
+               // реализации когда дошёл
             }
         }
     }

@@ -4,6 +4,6 @@ public interface ISoundService
 {
     SoundData Sound { get; }
 
-    void PlaySound(AudioSource audioSource, string SoundName);
+    void PlaySound(string soundName, AudioSource audioSource = null);
     void StopSound(AudioSource audioSource);
 }

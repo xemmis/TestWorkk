@@ -11,7 +11,6 @@ public abstract class FoodItem : Pickupable, IFood
 
     public bool Combine(IngredientType ingredientType)
     {
-        print("TryCombine");
         foreach (FoodStage foodStage in Food)
         {
             if (foodStage.NextIngridient == ingredientType)

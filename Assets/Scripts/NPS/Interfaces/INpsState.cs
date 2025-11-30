@@ -1,6 +1,6 @@
-public interface INpsState
+public interface INpcState
 {
-    void Enter(NpsBehaviorLogic controller);
-    void Update(NpsBehaviorLogic controller);
-    void Exit(NpsBehaviorLogic controller);
+    void Enter(NpcBehaviorLogic controller);
+    void Update(NpcBehaviorLogic controller);
+    void Exit(NpcBehaviorLogic controller);
 }

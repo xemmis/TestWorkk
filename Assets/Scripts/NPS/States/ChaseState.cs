@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ChaseState : INpsState
+public class ChaseState : INpcState
 {
     public ChaseState(Transform target)
     {
@@ -12,7 +12,7 @@ public class ChaseState : INpsState
     private NavMeshAgent _agent;
     private Animator _animator;
 
-    public void Enter(NpsBehaviorLogic controller)
+    public void Enter(NpcBehaviorLogic controller)
     {
         _agent = controller.GetAgent();
         _animator = controller.GetAnimator();
@@ -21,7 +21,7 @@ public class ChaseState : INpsState
         Debug.Log("ChaseState Started");
     }
 
-    public void Exit(NpsBehaviorLogic controller)
+    public void Exit(NpcBehaviorLogic controller)
     {
         _animator.SetBool("Run", false);
         Debug.Log("ChaseState Ended");
@@ -31,7 +31,7 @@ public class ChaseState : INpsState
         _animator = null;
     }
 
-    public void Update(NpsBehaviorLogic controller)
+    public void Update(NpcBehaviorLogic controller)
     {
         if (_agent == null) return;
         _agent.SetDestination(_targetPos.position);
@@ -40,7 +40,7 @@ public class ChaseState : INpsState
         {
             if (!_agent.hasPath || _agent.velocity.sqrMagnitude == 0f)
             {
-                controller.ChangeState(new ExitState(NpsWalkPositions.NpsWalkInstance.PositionsToWalk[1]));
+                // реализация "скримера"
             }
         }
     }
