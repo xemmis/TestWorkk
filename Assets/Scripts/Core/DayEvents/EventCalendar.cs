@@ -1,0 +1,168 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "EventCalendar", menuName = "NPC/Calendar")]
+public class EventCalendar : ScriptableObject
+{
+    [System.Serializable]
+    public class DayEvents
+    {
+        public string SceneName;
+        public List<EventData> Events;
+        public int Day;
+    }
+
+    public List<DayEvents> Events = new();
+    public int CurrentDay = 1;
+    public string CurrentScene = "";
+
+    public List<EventData> GetCurrentEvents()
+    {
+        return GetEventsForDayAndScene(CurrentDay, CurrentScene);
+    }
+
+    public List<EventData> GetEventsForDayAndScene(int day, string sceneName)
+    {
+        var dayEvents = GetEventsForDay(day);
+
+        if (!string.IsNullOrEmpty(sceneName))
+        {
+            return dayEvents?.Find(e => e.SceneName == sceneName)?.Events ?? new List<EventData>();
+        }
+
+        return GetAllEventsForDay(day);
+    }
+
+    public List<DayEvents> GetEventsForDay(int day)
+    {
+        return Events.FindAll(e => e.Day == day);
+    }
+
+    public List<EventData> GetAllEventsForDay(int day)
+    {
+        var result = new List<EventData>();
+        var dayEventsList = GetEventsForDay(day);
+
+        foreach (var dayEvents in dayEventsList)
+        {
+            if (dayEvents.Events != null)
+            {
+                result.AddRange(dayEvents.Events);
+            }
+        }
+
+        return result;
+    }
+
+    // Получить события для текущей сцены (всех дней)
+    public List<EventData> GetEventsForCurrentScene()
+    {
+        return GetEventsForScene(CurrentScene);
+    }
+
+    // Получить события для конкретной сцены (всех дней)
+    public List<EventData> GetEventsForScene(string sceneName)
+    {
+        var result = new List<EventData>();
+
+        foreach (var dayEvents in Events)
+        {
+            if (dayEvents.SceneName == sceneName && dayEvents.Events != null)
+            {
+                result.AddRange(dayEvents.Events);
+            }
+        }
+
+        return result;
+    }
+
+    // Получить все уникальные имена сцен для конкретного дня
+    public List<string> GetScenesForDay(int day)
+    {
+        var scenes = new List<string>();
+        var dayEventsList = GetEventsForDay(day);
+
+        foreach (var dayEvents in dayEventsList)
+        {
+            if (!string.IsNullOrEmpty(dayEvents.SceneName) && !scenes.Contains(dayEvents.SceneName))
+            {
+                scenes.Add(dayEvents.SceneName);
+            }
+        }
+
+        return scenes;
+    }
+
+    // Проверить, есть ли события для текущих параметров
+    public bool HasCurrentEvents()
+    {
+        return GetCurrentEvents().Count > 0;
+    }
+
+    // Проверить, есть ли события для дня и сцены
+    public bool HasEventsForDayAndScene(int day, string sceneName)
+    {
+        return GetEventsForDayAndScene(day, sceneName).Count > 0;
+    }
+
+    // Установить день и сцену одновременно
+    public void SetCurrentDayAndScene(int day, string sceneName)
+    {
+        SetDay(day);
+        SetScene(sceneName);
+    }
+
+    // Установить сцену
+    public void SetScene(string sceneName)
+    {
+        CurrentScene = sceneName;
+    }
+
+    // Получить DayEvents по дню и сцене
+    public DayEvents GetDayEvents(int day, string sceneName)
+    {
+        return Events.Find(e => e.Day == day && e.SceneName == sceneName);
+    }
+
+    // Добавить событие для текущего дня и сцены
+    public void AddEventToCurrent(EventData eventData)
+    {
+        AddEventToDayAndScene(CurrentDay, CurrentScene, eventData);
+    }
+
+    // Добавить событие для конкретного дня и сцены
+    public void AddEventToDayAndScene(int day, string sceneName, EventData eventData)
+    {
+        var dayEvents = GetDayEvents(day, sceneName);
+
+        if (dayEvents == null)
+        {
+            // Создаем новую запись если не существует
+            dayEvents = new DayEvents
+            {
+                Day = day,
+                SceneName = sceneName,
+                Events = new List<EventData>()
+            };
+            Events.Add(dayEvents);
+        }
+
+        dayEvents.Events.Add(eventData);
+    }
+
+    // Старые методы для обратной совместимости
+    public DayEvents GetDailyEvents()
+    {
+        return GetDayEvents(CurrentDay, CurrentScene);
+    }
+
+    public List<EventData> GetDailyEventData()
+    {
+        return GetCurrentEvents();
+    }
+
+    public void SetDay(int day)
+    {
+        CurrentDay = day;
+    }
+}

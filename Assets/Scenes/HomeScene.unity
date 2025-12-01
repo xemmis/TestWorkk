@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.041120075, g: 0.07249696, b: 0.12565827, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4333,10 +4333,9 @@ MonoBehaviour:
   _interactionRayScanner: {fileID: 749159142}
   _interactionVisual: {fileID: 2056860949}
   _dayProducer: {fileID: 1243182886}
-  _daySpawnHandler:
-  - {fileID: 11400000, guid: 99fd0503ef9d9ec4799aae9f98e98b3f, type: 2}
-  - {fileID: 11400000, guid: 4021a4b9ec1f729419bd43f970389545, type: 2}
-  _currentDay: 2
+  _eventCalendar: {fileID: 0}
+  _sceneName: Work
+  _currentDay: 1
 --- !u!114 &1243182886
 MonoBehaviour:
   m_ObjectHideFlags: 0
