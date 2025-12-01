@@ -12,7 +12,6 @@ public class SoundService : MonoBehaviour, ISoundService
         if (SoundServiceInstance == null)
         {
             SoundServiceInstance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -57,7 +56,7 @@ public class SoundService : MonoBehaviour, ISoundService
     public void StopSound(AudioSource audioSource = null)
     {
         transform.position = Vector3.zero;
-        
+
         audioSource = audioSource ?? _audioSource;
         audioSource?.Stop();
     }

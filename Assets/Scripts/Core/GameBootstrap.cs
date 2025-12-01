@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameBootstrap : MonoBehaviour
 {
+    public static GameBootstrap GameBootstrapInstance { get; private set; } = null;
+
     [Header("Dialogue Components")]
     [SerializeField] DialogueInputHandler _dialogueInputHandler;
     [SerializeField] DialogueUIVisualizer _dialogueVisualizer;
@@ -11,13 +13,6 @@ public class GameBootstrap : MonoBehaviour
 
     [Header("GameCore Components")]
     [SerializeField] private PeopleFabric _peopleFabric;
-    [SerializeField] private Transform _playerPos;
-
-
-    [Header("Interaction Components")]
-    [SerializeField] private InteractionScannerService _interactionScannerService;
-    [SerializeField] private InteractionRayScanner _interactionRayScanner;
-    [SerializeField] private InteractionVisualFeedBack _interactionVisual;
 
     [Header("DayProducer Components")]
     [SerializeField] private DayProducer _dayProducer;
@@ -29,15 +24,26 @@ public class GameBootstrap : MonoBehaviour
 
     private void Awake()
     {
+        if (GameBootstrap.GameBootstrapInstance == null)
+        {
+            GameBootstrap.GameBootstrapInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         InitializeDialogue();
         InitilizePeopleFabric();
         InitializeEvents();
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void InitilizePeopleFabric()
     {
         NpcConfigurator npsConfigurator = new();
-        _peopleFabric.Initialize(_playerPos, npsConfigurator);
+        _peopleFabric.Initialize( npsConfigurator);
     }
 
     private void InitializeDialogue()
@@ -45,10 +51,6 @@ public class GameBootstrap : MonoBehaviour
         _dialogueSystem.Initialize(_dialogueVisualizer, _dialogueInputHandler);
     }
 
-    private void InitializeInteraction()
-    {
-        _interactionScannerService.Initialize(_interactionRayScanner, _interactionVisual);
-    }
 
     private void InitializeEvents()
     {

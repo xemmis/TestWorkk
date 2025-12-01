@@ -7,9 +7,9 @@ public interface INpcFabric
 
 public class PeopleFabric : MonoBehaviour, INpcFabric
 {
-    [SerializeField] private Transform _playerPos = null;
     public static PeopleFabric PeopleFabricInstance = null;
     private INpcConfigurator _npcConfigurator = null;
+    private Transform _playerPos;
 
     private void Awake()
     {
@@ -23,9 +23,9 @@ public class PeopleFabric : MonoBehaviour, INpcFabric
         }
     }
 
-    public void Initialize(Transform playerPos, INpcConfigurator npsConfigurator)
+    public void Initialize(INpcConfigurator npsConfigurator)
     {
-        _playerPos = playerPos;
+        _playerPos = PlayerService.PlayerInstance.GetPlayerPos();
         _npcConfigurator = npsConfigurator;
     }
 

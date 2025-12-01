@@ -6,19 +6,45 @@ public class EventCalendarEditor : Editor
 {
     private SerializedProperty _eventsProperty;
     private SerializedProperty _currentDayProperty;
+    private SerializedProperty _currentSceneProperty; // Новое свойство
 
     private void OnEnable()
     {
         _eventsProperty = serializedObject.FindProperty("Events");
         _currentDayProperty = serializedObject.FindProperty("CurrentDay");
+        _currentSceneProperty = serializedObject.FindProperty("CurrentScene"); // Получаем ссылку
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
-        // Текущий день
-        EditorGUILayout.PropertyField(_currentDayProperty);
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Текущее состояние", EditorStyles.boldLabel);
+        
+        // Текущий день и сцена в одной строке
+        EditorGUILayout.BeginHorizontal();
+        {
+            // День
+            EditorGUILayout.BeginVertical();
+            {
+                EditorGUILayout.LabelField("День", EditorStyles.miniLabel);
+                EditorGUILayout.PropertyField(_currentDayProperty, GUIContent.none);
+            }
+            EditorGUILayout.EndVertical();
+
+            // Сцена
+            EditorGUILayout.BeginVertical();
+            {
+                EditorGUILayout.LabelField("Сцена", EditorStyles.miniLabel);
+                EditorGUILayout.PropertyField(_currentSceneProperty, GUIContent.none);
+            }
+            EditorGUILayout.EndVertical();
+        }
+        EditorGUILayout.EndHorizontal();
+
+        // Информация о текущих событиях
+        DrawCurrentStateInfo();
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Расписание событий", EditorStyles.boldLabel);
@@ -33,17 +59,55 @@ public class EventCalendarEditor : Editor
             EditorGUILayout.HelpBox("Нет событий", MessageType.Info);
         }
 
-        // Кнопка добавления
+        // Кнопки управления
         EditorGUILayout.Space();
-        if (GUILayout.Button("Добавить день"))
+        EditorGUILayout.BeginHorizontal();
         {
-            _eventsProperty.arraySize++;
-            var newEntry = _eventsProperty.GetArrayElementAtIndex(_eventsProperty.arraySize - 1);
-            newEntry.FindPropertyRelative("Day").intValue = _eventsProperty.arraySize;
-            newEntry.FindPropertyRelative("SceneName").stringValue = "Scene_1";
+            if (GUILayout.Button("Добавить день"))
+            {
+                AddNewDay();
+            }
+
+            if (GUILayout.Button("Сортировать по дням"))
+            {
+                SortByDays();
+            }
         }
+        EditorGUILayout.EndHorizontal();
 
         serializedObject.ApplyModifiedProperties();
+    }
+
+    private void DrawCurrentStateInfo()
+    {
+        EventCalendar calendar = (EventCalendar)target;
+        
+        int day = _currentDayProperty.intValue;
+        string scene = _currentSceneProperty.stringValue;
+        
+        var eventsForDay = calendar.GetEventsForDay(day);
+        int totalEvents = 0;
+        
+        if (eventsForDay != null)
+        {
+            foreach (var dayEvent in eventsForDay)
+            {
+                if (dayEvent.Events != null)
+                    totalEvents += dayEvent.Events.Count;
+            }
+        }
+
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+        {
+            EditorGUILayout.LabelField($"Событий на день {day}: {totalEvents}", EditorStyles.miniLabel);
+            
+            if (!string.IsNullOrEmpty(scene))
+            {
+                var sceneEvents = calendar.GetEventsForDayAndScene(day, scene);
+                EditorGUILayout.LabelField($"Событий в сцене '{scene}': {sceneEvents?.Count ?? 0}", EditorStyles.miniLabel);
+            }
+        }
+        EditorGUILayout.EndVertical();
     }
 
     private void DrawEventsTable()
@@ -53,10 +117,10 @@ public class EventCalendarEditor : Editor
         {
             EditorGUILayout.BeginHorizontal();
             {
-                EditorGUILayout.LabelField("День", EditorStyles.boldLabel, GUILayout.Width(60));
+                EditorGUILayout.LabelField("День", EditorStyles.boldLabel, GUILayout.Width(50));
                 EditorGUILayout.LabelField("Сцена", EditorStyles.boldLabel, GUILayout.Width(150));
                 EditorGUILayout.LabelField("События", EditorStyles.boldLabel);
-                EditorGUILayout.LabelField("", GUILayout.Width(30)); // Для кнопки удаления
+                EditorGUILayout.LabelField("", GUILayout.Width(60)); // Для кнопок
             }
             EditorGUILayout.EndHorizontal();
 
@@ -78,34 +142,81 @@ public class EventCalendarEditor : Editor
         var sceneProperty = dayEntry.FindPropertyRelative("SceneName");
         var eventsProperty = dayEntry.FindPropertyRelative("Events");
 
-        EditorGUILayout.BeginHorizontal();
+        // Подсветка текущего дня и сцены
+        bool isCurrentDay = dayProperty.intValue == _currentDayProperty.intValue;
+        bool isCurrentScene = sceneProperty.stringValue == _currentSceneProperty.stringValue;
+        
+        if (isCurrentDay && isCurrentScene)
         {
-            // День
-            EditorGUILayout.PropertyField(dayProperty, GUIContent.none, GUILayout.Width(60));
+            EditorGUILayout.BeginHorizontal(EditorStyles.textArea);
+        }
+        else
+        {
+            EditorGUILayout.BeginHorizontal();
+        }
 
-            // Название сцены
-            EditorGUILayout.PropertyField(sceneProperty, GUIContent.none, GUILayout.Width(150));
-
-            // Количество событий + кнопка развернуть
-            EditorGUILayout.BeginVertical();
+        // День
+        EditorGUILayout.BeginVertical(GUILayout.Width(50));
+        {
+            if (isCurrentDay)
             {
-                EditorGUILayout.LabelField($"Событий: {eventsProperty.arraySize}", GUILayout.MinWidth(100));
+                GUI.color = Color.green;
+            }
+            EditorGUILayout.PropertyField(dayProperty, GUIContent.none);
+            GUI.color = Color.white;
+        }
+        EditorGUILayout.EndVertical();
 
-                // Кнопка для редактирования событий
-                if (GUILayout.Button("Изменить", GUILayout.Width(70)))
+        // Название сцены
+        EditorGUILayout.BeginVertical(GUILayout.Width(150));
+        {
+            if (isCurrentScene)
+            {
+                GUI.color = Color.yellow;
+            }
+            EditorGUILayout.PropertyField(sceneProperty, GUIContent.none);
+            GUI.color = Color.white;
+        }
+        EditorGUILayout.EndVertical();
+
+        // Количество событий
+        EditorGUILayout.BeginVertical();
+        {
+            string eventCountText = $"{eventsProperty.arraySize} событий";
+            
+            if (eventsProperty.arraySize == 0)
+            {
+                GUI.color = Color.red;
+                eventCountText = "Нет событий";
+            }
+            
+            EditorGUILayout.LabelField(eventCountText, GUILayout.MinWidth(100));
+            GUI.color = Color.white;
+        }
+        EditorGUILayout.EndVertical();
+
+        // Кнопки управления
+        EditorGUILayout.BeginVertical(GUILayout.Width(60));
+        {
+            EditorGUILayout.BeginHorizontal();
+            {
+                // Кнопка редактирования
+                if (GUILayout.Button("✎", GUILayout.Width(25)))
                 {
                     eventsProperty.isExpanded = !eventsProperty.isExpanded;
                 }
-            }
-            EditorGUILayout.EndVertical();
 
-            // Кнопка удаления дня
-            if (GUILayout.Button("×", GUILayout.Width(25)))
-            {
-                _eventsProperty.DeleteArrayElementAtIndex(index);
-                return;
+                // Кнопка удаления
+                if (GUILayout.Button("×", GUILayout.Width(25)))
+                {
+                    _eventsProperty.DeleteArrayElementAtIndex(index);
+                    return;
+                }
             }
+            EditorGUILayout.EndHorizontal();
         }
+        EditorGUILayout.EndVertical();
+
         EditorGUILayout.EndHorizontal();
 
         // Развернутое отображение событий
@@ -117,5 +228,36 @@ public class EventCalendarEditor : Editor
         }
 
         EditorGUILayout.Space(5);
+    }
+
+    private void AddNewDay()
+    {
+        int newDay = 1;
+        if (_eventsProperty.arraySize > 0)
+        {
+            // Находим максимальный день
+            for (int i = 0; i < _eventsProperty.arraySize; i++)
+            {
+                var dayEntry = _eventsProperty.GetArrayElementAtIndex(i);
+                var dayProperty = dayEntry.FindPropertyRelative("Day");
+                if (dayProperty.intValue >= newDay)
+                {
+                    newDay = dayProperty.intValue + 1;
+                }
+            }
+        }
+
+        _eventsProperty.arraySize++;
+        var newEntry = _eventsProperty.GetArrayElementAtIndex(_eventsProperty.arraySize - 1);
+        newEntry.FindPropertyRelative("Day").intValue = newDay;
+        newEntry.FindPropertyRelative("SceneName").stringValue = "Scene_1";
+        newEntry.FindPropertyRelative("Events").arraySize = 0;
+    }
+
+    private void SortByDays()
+    {
+        // Сортировка по дням
+        // (Нужно реализовать логику сортировки массива)
+        Debug.Log("Сортировка по дням");
     }
 }

@@ -40,5 +40,8 @@ MonoBehaviour:
   - SceneName: Park
     Events: []
     Day: 1
-  CurrentDay: 1
-  CurrentScene: 
+  - SceneName: Home
+    Events: []
+    Day: 2
+  CurrentDay: 2
+  CurrentScene: Home

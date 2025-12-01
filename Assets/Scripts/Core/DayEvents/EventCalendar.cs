@@ -54,13 +54,13 @@ public class EventCalendar : ScriptableObject
         return result;
     }
 
-    // Получить события для текущей сцены (всех дней)
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
     public List<EventData> GetEventsForCurrentScene()
     {
         return GetEventsForScene(CurrentScene);
     }
 
-    // Получить события для конкретной сцены (всех дней)
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
     public List<EventData> GetEventsForScene(string sceneName)
     {
         var result = new List<EventData>();
@@ -76,7 +76,7 @@ public class EventCalendar : ScriptableObject
         return result;
     }
 
-    // Получить все уникальные имена сцен для конкретного дня
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
     public List<string> GetScenesForDay(int day)
     {
         var scenes = new List<string>();
@@ -93,51 +93,51 @@ public class EventCalendar : ScriptableObject
         return scenes;
     }
 
-    // Проверить, есть ли события для текущих параметров
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public bool HasCurrentEvents()
     {
         return GetCurrentEvents().Count > 0;
     }
 
-    // Проверить, есть ли события для дня и сцены
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
     public bool HasEventsForDayAndScene(int day, string sceneName)
     {
         return GetEventsForDayAndScene(day, sceneName).Count > 0;
     }
 
-    // Установить день и сцену одновременно
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public void SetCurrentDayAndScene(int day, string sceneName)
     {
         SetDay(day);
         SetScene(sceneName);
     }
 
-    // Установить сцену
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public void SetScene(string sceneName)
     {
         CurrentScene = sceneName;
     }
 
-    // Получить DayEvents по дню и сцене
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DayEvents пїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
     public DayEvents GetDayEvents(int day, string sceneName)
     {
         return Events.Find(e => e.Day == day && e.SceneName == sceneName);
     }
 
-    // Добавить событие для текущего дня и сцены
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
     public void AddEventToCurrent(EventData eventData)
     {
         AddEventToDayAndScene(CurrentDay, CurrentScene, eventData);
     }
 
-    // Добавить событие для конкретного дня и сцены
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
     public void AddEventToDayAndScene(int day, string sceneName, EventData eventData)
     {
         var dayEvents = GetDayEvents(day, sceneName);
 
         if (dayEvents == null)
         {
-            // Создаем новую запись если не существует
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             dayEvents = new DayEvents
             {
                 Day = day,
@@ -150,7 +150,7 @@ public class EventCalendar : ScriptableObject
         dayEvents.Events.Add(eventData);
     }
 
-    // Старые методы для обратной совместимости
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public DayEvents GetDailyEvents()
     {
         return GetDayEvents(CurrentDay, CurrentScene);

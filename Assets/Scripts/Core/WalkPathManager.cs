@@ -16,8 +16,6 @@ public class WalkPathManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     public WalkPath GetRandomPath()
