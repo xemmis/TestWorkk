@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class CookingPlate : CookingService, IConnectable
+public class LightController : MonoBehaviour, IConnectable
 {
-    [Header("Electrical Connection")]
-    [Tooltip("ID для подключения к выключателю. Если пусто - используется имя объекта")]
+    [SerializeField] private Light _light;
+    [SerializeField] private float _maxIntensity = 1f;
+
+    [Tooltip("ID для привязки к выключателю. Если пусто - будет использоваться имя GameObject")]
     [SerializeField] private string _connectionID = "";
 
-    [Tooltip("Автоматически регистрироваться в ElectricalPanel")]
+    [Tooltip("Автоматически искать ElectricalPanel при старте")]
     [SerializeField] private bool _autoRegister = true;
 
-    [Tooltip("Визуальный индикатор включения")]
-    [SerializeField] private GameObject _powerIndicator;
-
-    // IConnectable implementation
     public string ConnectionID => string.IsNullOrEmpty(_connectionID) ? name : _connectionID;
-    public bool IsPowered { get; private set; }
+    public bool IsPowered { get; protected set; }
+
+    private void Awake()
+    {
+        if (_light == null) _light = GetComponent<Light>();
+    }
 
     private void Start()
     {
@@ -22,8 +25,6 @@ public class CookingPlate : CookingService, IConnectable
         {
             RegisterToPanel();
         }
-
-        UpdateVisualIndicator();
     }
 
     private void OnEnable()
@@ -69,28 +70,11 @@ public class CookingPlate : CookingService, IConnectable
     public void OnPowerStateChanged(bool isPowered)
     {
         IsPowered = isPowered;
-        UpdateVisualIndicator();
 
-        Debug.Log($"{name} power state changed to: {isPowered}");
-    }
-
-    private void UpdateVisualIndicator()
-    {
-        if (_powerIndicator != null)
+        if (_light != null)
         {
-            _powerIndicator.SetActive(IsPowered);
+            _light.enabled = isPowered;
+            _light.intensity = isPowered ? _maxIntensity : 0f;
         }
-    }
-
-    public override void Cook(ICookable ingredient)
-    {
-        if (!IsPowered)
-        {
-            Debug.Log($"{name} is not powered, cannot cook");
-            return;
-        }
-
-        Debug.Log($"{name} is cooking {ingredient}");
-        base.Cook(ingredient);
     }
 }
