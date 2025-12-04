@@ -22,7 +22,7 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private string _sceneName;
     [SerializeField] private int _currentDay;
 
-    private void Awake()
+    private void Start()
     {
         if (GameBootstrap.GameBootstrapInstance == null)
         {
@@ -43,7 +43,7 @@ public class GameBootstrap : MonoBehaviour
     private void InitilizePeopleFabric()
     {
         NpcConfigurator npsConfigurator = new();
-        _peopleFabric.Initialize( npsConfigurator);
+        _peopleFabric.Initialize(npsConfigurator);
     }
 
     private void InitializeDialogue()

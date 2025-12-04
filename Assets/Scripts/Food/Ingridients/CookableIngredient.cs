@@ -27,6 +27,7 @@ public class CookableIngredient : FoodIngredient, ICookable
 
     public void ChangeIngredientState(bool condition)
     {
+        print("Kook");
         IsReadyToCombine = condition;
         _renderer.material = _cookedMaterial;
         Type = CookedType;
@@ -34,6 +35,7 @@ public class CookableIngredient : FoodIngredient, ICookable
 
     public void ChangeToBurnedState()
     {
+        print("PEREKook");
         _renderer.material = _burnedMaterial;
         Type = IngredientType.Burned;
     }

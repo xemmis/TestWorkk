@@ -44,7 +44,7 @@ public class IngredientCookService : MonoBehaviour, ICookService
 
     private IEnumerator CookingCoroutine()
     {
-        Sound.PlaySound(SoundName, _audioSource);
+        Sound?.PlaySound(SoundName, _audioSource);
         IsCooking = true;
         yield return new WaitForSeconds(CookTime);
         IsCooked = true;
@@ -56,7 +56,7 @@ public class IngredientCookService : MonoBehaviour, ICookService
 
     public void StopCooking()
     {
-        Sound.StopSound(_audioSource);
+        Sound?.StopSound(_audioSource);
         IsCooking = false;
         StopCoroutine(CookRoutine);
     }

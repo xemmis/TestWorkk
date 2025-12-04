@@ -379,29 +379,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _switches:
   - PanelSwitch: {fileID: 6573703393386638746}
+    PanelID: MainPanel
     IsEnabled: 1
-    ConnectedLights: []
-    LightIntensity: 1
   - PanelSwitch: {fileID: 1933390819576945779}
+    PanelID: MainPanel
     IsEnabled: 1
-    ConnectedLights: []
-    LightIntensity: 1
   - PanelSwitch: {fileID: 8985639736550125130}
+    PanelID: MainPanel
     IsEnabled: 1
-    ConnectedLights: []
-    LightIntensity: 1
   - PanelSwitch: {fileID: 4330641502078801268}
+    PanelID: MainPanel
     IsEnabled: 1
-    ConnectedLights: []
-    LightIntensity: 1
   - PanelSwitch: {fileID: 4292405363450593513}
+    PanelID: MainPanel
     IsEnabled: 1
-    ConnectedLights: []
-    LightIntensity: 1
   - PanelSwitch: {fileID: 7503544400445344421}
+    PanelID: MainPanel
     IsEnabled: 1
-    ConnectedLights: []
-    LightIntensity: 1
 --- !u!1 &2477451352655994932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8183054579784368906, guid: 2701fed5abd78a0479b3c05902b0a328, type: 3}
@@ -541,7 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OpenPos>k__BackingField: {x: 0, y: 55, z: 0}
   <ClosePos>k__BackingField: {x: 0, y: -55, z: 0}
-  <IsOpened>k__BackingField: 0
+  <IsOpened>k__BackingField: 1
   <CanInteract>k__BackingField: 1
   _duration: 0.5
   _source: {fileID: 0}
@@ -682,7 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OpenPos>k__BackingField: {x: 0, y: 55, z: 0}
   <ClosePos>k__BackingField: {x: 0, y: -55, z: 0}
-  <IsOpened>k__BackingField: 0
+  <IsOpened>k__BackingField: 1
   <CanInteract>k__BackingField: 1
   _duration: 0.5
   _source: {fileID: 0}
@@ -823,7 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OpenPos>k__BackingField: {x: 0, y: 55, z: 0}
   <ClosePos>k__BackingField: {x: 0, y: -55, z: 0}
-  <IsOpened>k__BackingField: 0
+  <IsOpened>k__BackingField: 1
   <CanInteract>k__BackingField: 1
   _duration: 0.5
   _source: {fileID: 0}
@@ -964,7 +958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OpenPos>k__BackingField: {x: 0, y: 55, z: 0}
   <ClosePos>k__BackingField: {x: 0, y: -55, z: 0}
-  <IsOpened>k__BackingField: 0
+  <IsOpened>k__BackingField: 1
   <CanInteract>k__BackingField: 1
   _duration: 0.5
   _source: {fileID: 0}
@@ -1105,7 +1099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OpenPos>k__BackingField: {x: 0, y: 55, z: 0}
   <ClosePos>k__BackingField: {x: 0, y: -55, z: 0}
-  <IsOpened>k__BackingField: 0
+  <IsOpened>k__BackingField: 1
   <CanInteract>k__BackingField: 1
   _duration: 0.5
   _source: {fileID: 0}
@@ -1246,7 +1240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OpenPos>k__BackingField: {x: 0, y: 55, z: 0}
   <ClosePos>k__BackingField: {x: 0, y: -55, z: 0}
-  <IsOpened>k__BackingField: 0
+  <IsOpened>k__BackingField: 1
   <CanInteract>k__BackingField: 1
   _duration: 0.5
   _source: {fileID: 0}

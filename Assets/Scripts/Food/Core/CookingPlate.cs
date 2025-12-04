@@ -1,84 +1,29 @@
 ﻿using UnityEngine;
 
-public class CookingPlate : CookingService, IConnectable
+public class CookingPlate : CookingService
 {
-    [Header("Electrical Connection")]
-    [Tooltip("ID для подключения к выключателю. Если пусто - используется имя объекта")]
-    [SerializeField] private string _connectionID = "";
-
-    [Tooltip("Автоматически регистрироваться в ElectricalPanel")]
-    [SerializeField] private bool _autoRegister = true;
-
-    [Tooltip("Визуальный индикатор включения")]
+    [Header("Panel Connection")]
+    [SerializeField] private string _connectedPanelID = "Cooking";
     [SerializeField] private GameObject _powerIndicator;
 
-    // IConnectable implementation
-    public string ConnectionID => string.IsNullOrEmpty(_connectionID) ? name : _connectionID;
     public bool IsPowered { get; private set; }
-
-    private void Start()
-    {
-        if (_autoRegister)
-        {
-            RegisterToPanel();
-        }
-
-        UpdateVisualIndicator();
-    }
 
     private void OnEnable()
     {
-        if (!_autoRegister)
-        {
-            RegisterToPanel();
-        }
+        EventBus.Subscribe<PanelPowerEvent>(OnPanelPowerChanged);
     }
 
     private void OnDisable()
     {
-        UnregisterFromPanel();
+        EventBus.Unsubscribe<PanelPowerEvent>(OnPanelPowerChanged);
     }
 
-    private void OnDestroy()
+    private void OnPanelPowerChanged(PanelPowerEvent evt)
     {
-        UnregisterFromPanel();
-    }
-
-    private void RegisterToPanel()
-    {
-        var panel = FindObjectOfType<ElectricalPanel>();
-        if (panel != null)
+        if (evt.PanelID == _connectedPanelID)
         {
-            panel.RegisterConnectable(this);
-        }
-        else
-        {
-            Debug.LogWarning($"ElectricalPanel not found for {name}");
-        }
-    }
-
-    private void UnregisterFromPanel()
-    {
-        var panel = FindObjectOfType<ElectricalPanel>();
-        if (panel != null)
-        {
-            panel.UnregisterConnectable(this);
-        }
-    }
-
-    public void OnPowerStateChanged(bool isPowered)
-    {
-        IsPowered = isPowered;
-        UpdateVisualIndicator();
-
-        Debug.Log($"{name} power state changed to: {isPowered}");
-    }
-
-    private void UpdateVisualIndicator()
-    {
-        if (_powerIndicator != null)
-        {
-            _powerIndicator.SetActive(IsPowered);
+            IsPowered = evt.IsPowered;
+            UpdateVisualIndicator();
         }
     }
 
@@ -89,8 +34,15 @@ public class CookingPlate : CookingService, IConnectable
             Debug.Log($"{name} is not powered, cannot cook");
             return;
         }
-
-        Debug.Log($"{name} is cooking {ingredient}");
+        
         base.Cook(ingredient);
+    }
+
+    private void UpdateVisualIndicator()
+    {
+        if (_powerIndicator != null)
+        {
+            _powerIndicator.SetActive(IsPowered);
+        }
     }
 }

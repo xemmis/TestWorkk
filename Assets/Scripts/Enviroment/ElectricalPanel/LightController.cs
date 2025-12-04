@@ -1,76 +1,40 @@
 ﻿using UnityEngine;
 
-public class LightController : MonoBehaviour, IConnectable
+public class LightController : MonoBehaviour
 {
+    [Header("Panel Connection")]
+    [SerializeField] private string _connectedPanelID = "Light";
+    
+    [Header("Light Settings")]
     [SerializeField] private Light _light;
     [SerializeField] private float _maxIntensity = 1f;
-
-    [Tooltip("ID для привязки к выключателю. Если пусто - будет использоваться имя GameObject")]
-    [SerializeField] private string _connectionID = "";
-
-    [Tooltip("Автоматически искать ElectricalPanel при старте")]
-    [SerializeField] private bool _autoRegister = true;
-
-    public string ConnectionID => string.IsNullOrEmpty(_connectionID) ? name : _connectionID;
-    public bool IsPowered { get; protected set; }
 
     private void Awake()
     {
         if (_light == null) _light = GetComponent<Light>();
     }
 
-    private void Start()
-    {
-        if (_autoRegister)
-        {
-            RegisterToPanel();
-        }
-    }
-
     private void OnEnable()
     {
-        if (!_autoRegister)
-        {
-            RegisterToPanel();
-        }
+        EventBus.Subscribe<PanelPowerEvent>(OnPanelPowerChanged);
     }
 
     private void OnDisable()
     {
-        UnregisterFromPanel();
+        EventBus.Unsubscribe<PanelPowerEvent>(OnPanelPowerChanged);
     }
 
-    private void OnDestroy()
+    private void OnPanelPowerChanged(PanelPowerEvent evt)
     {
-        UnregisterFromPanel();
-    }
-
-    private void RegisterToPanel()
-    {
-        var panel = FindObjectOfType<ElectricalPanel>();
-        if (panel != null)
+        // Реагируем только на события нашей панели
+        if (evt.PanelID == _connectedPanelID)
         {
-            panel.RegisterConnectable(this);
-        }
-        else
-        {
-            Debug.LogWarning($"ElectricalPanel not found for {name}");
+            UpdateLightState(evt.IsPowered);
         }
     }
 
-    private void UnregisterFromPanel()
+    private void UpdateLightState(bool isPowered)
     {
-        var panel = FindObjectOfType<ElectricalPanel>();
-        if (panel != null)
-        {
-            panel.UnregisterConnectable(this);
-        }
-    }
-
-    public void OnPowerStateChanged(bool isPowered)
-    {
-        IsPowered = isPowered;
-
         if (_light != null)
         {
             _light.enabled = isPowered;
