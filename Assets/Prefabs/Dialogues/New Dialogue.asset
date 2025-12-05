@@ -31,10 +31,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - nodeId: 3
-    nextNodeId: 2
+    nextNodeId: 
     npcText: C???
     EventActivationTime: 2
-    NodeEventTheme: 1
+    NodeEventTheme: 0
     onNodeSelected:
       m_PersistentCalls:
         m_Calls: []

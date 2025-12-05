@@ -19,10 +19,10 @@ public static class EventHandlerFactory
         {
             EventType.NPCSpawn => new SpawnEventHandler(),
             EventType.SoundPlay => new SoundEventHandler(),
+            EventType.ObjectActivation => new ObjectActivationHandler(),
 
             /*
             EventType.LightToggle => new LightToggleHandler(),
-            EventType.ObjectActivation => new ObjectActivationHandler(),
             EventType.DialogueStart => new DialogueStartHandler(),
             */
             _ => throw new ArgumentException($"Unknown event type: {type}")

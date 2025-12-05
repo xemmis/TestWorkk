@@ -14,7 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Events:
   - SceneName: Home
-    Events: []
+    Events:
+    - EventType: 3
+      Parameters:
+        stringParam: CookingAudio
+        intParam: 1
+        floatParam: 0
+        objectParam: {fileID: 301498976735366039, guid: 3c925fd0efbf2e94184e3e89eb33ecbf, type: 3}
+        vectorParam: {x: 0, y: 0, z: 0}
+        customData: {fileID: 11400000, guid: 7e8c3718ea1e9ef44afd0b9040ac2d24, type: 2}
+      TriggerTime: 3
     Day: 1
   - SceneName: Work
     Events:
@@ -34,7 +43,7 @@ MonoBehaviour:
         floatParam: 0
         objectParam: {fileID: 0}
         vectorParam: {x: 0, y: 0, z: 0}
-        customData: {fileID: 0}
+        customData: {fileID: 11400000, guid: 7e8c3718ea1e9ef44afd0b9040ac2d24, type: 2}
       TriggerTime: 5
     Day: 1
   - SceneName: Park
@@ -47,4 +56,4 @@ MonoBehaviour:
     Events: []
     Day: 3
   CurrentDay: 1
-  CurrentScene: Work
+  CurrentScene: Home
